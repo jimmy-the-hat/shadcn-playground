@@ -1,7 +1,9 @@
+const isGithubPages = process.env.GITHUB_ACTIONS === "true"
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: "/shadcn-playground",
+  ...(isGithubPages && { basePath: "/shadcn-playground" }),
   images: {
     unoptimized: true,
   },

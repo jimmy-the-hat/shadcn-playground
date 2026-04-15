@@ -238,7 +238,9 @@ import { UpcomingPayments } from "@/components/cards-02/upcoming-payments"
 
 export default function Page() {
   const [selectedValue, setSelectedValue] = React.useState("")
-  const [isChecked, setIsChecked] = React.useState<boolean | "indeterminate">(false)
+  const [isChecked, setIsChecked] = React.useState<boolean | "indeterminate">(
+    false
+  )
   const [isToggled, setIsToggled] = React.useState(false)
   const [sliderValue, setSliderValue] = React.useState([50])
   const [progress, setProgress] = React.useState(65)
@@ -419,6 +421,31 @@ export default function Page() {
                   <CardContent>
                     <p>Smaller card content.</p>
                   </CardContent>
+                </Card>
+                <Card flush>
+                  <div className="flex-1 p-2 pb-0">
+                    <Card rounded="3xl" className="h-full">
+                      <CardHeader>
+                        <CardTitle>Inner Card</CardTitle>
+                        <CardDescription>
+                          This card is nested inside the outer card
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <p>Nested card content area.</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                  <div className="flex-1 p-6">
+                    <h3 className="mb-2 text-lg font-semibold">
+                      Outer Card Content
+                    </h3>
+                    <p className="text-muted-foreground">
+                      This is the bottom half of the outer card. It sits below
+                      the nested card above and can contain any content you need
+                      — text, actions, or additional details.
+                    </p>
+                  </div>
                 </Card>
               </div>
             </section>
