@@ -1,6 +1,6 @@
 "use client"
 
-import { Bar, BarChart, XAxis } from "recharts"
+import { Bar, BarChart } from "recharts"
 import { XIcon } from "lucide-react"
 
 import { Button } from "@workspace/ui/components/button"

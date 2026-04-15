@@ -16,6 +16,7 @@ export function ObservabilityCard() {
   return (
     <Card className="relative w-full max-w-md overflow-hidden pt-0">
       <div className="absolute inset-0 z-30 aspect-video bg-primary opacity-50 mix-blend-color" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="https://images.unsplash.com/photo-1604076850742-4c7221f3101b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="Photo by mymind on Unsplash"

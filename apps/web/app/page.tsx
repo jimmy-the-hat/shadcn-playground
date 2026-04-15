@@ -9,7 +9,6 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-  CardAction,
 } from "@workspace/ui/components/card"
 import { Badge } from "@workspace/ui/components/badge"
 import { Input } from "@workspace/ui/components/input"
@@ -109,8 +108,6 @@ import {
   SelectValue,
 } from "@workspace/ui/components/select"
 import { NativeSelect } from "@workspace/ui/components/native-select"
-import { Combobox } from "@workspace/ui/components/combobox"
-import { Command } from "@workspace/ui/components/command"
 import {
   ContextMenu,
   ContextMenuContent,
@@ -124,37 +121,12 @@ import {
 } from "@workspace/ui/components/context-menu"
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
   DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu"
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarLabel,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "@workspace/ui/components/menubar"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@workspace/ui/components/navigation-menu"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -188,57 +160,11 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@workspace/ui/components/sheet"
 import { Calendar } from "@workspace/ui/components/calendar"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@workspace/ui/components/carousel"
-import { ButtonGroup } from "@workspace/ui/components/button-group"
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@workspace/ui/components/input-group"
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@workspace/ui/components/input-otp"
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldLabel,
-} from "@workspace/ui/components/field"
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupAction,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarInset,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarProvider,
-  SidebarRail,
-  SidebarSeparator,
-  SidebarTrigger,
-} from "@workspace/ui/components/sidebar"
 import { Toaster } from "@workspace/ui/components/sonner"
 import { MobileNav } from "@/components/mobile-nav"
 import { ActivateAgentDialog } from "@/components/cards/activate-agent-dialog"
