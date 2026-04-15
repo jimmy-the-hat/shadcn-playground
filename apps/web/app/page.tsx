@@ -201,7 +201,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@workspace/ui/components/carousel"
-import { Resizable } from "@workspace/ui/components/resizable"
 import { ButtonGroup } from "@workspace/ui/components/button-group"
 import {
   InputGroup,
@@ -215,15 +214,10 @@ import {
 } from "@workspace/ui/components/input-otp"
 import {
   Field,
-  FieldControl,
   FieldDescription,
   FieldError,
   FieldLabel,
-  FieldMessage,
 } from "@workspace/ui/components/field"
-import { Item } from "@workspace/ui/components/item"
-import { Empty } from "@workspace/ui/components/empty"
-import { Direction } from "@workspace/ui/components/direction"
 import {
   Sidebar,
   SidebarContent,
@@ -318,7 +312,7 @@ import { UpcomingPayments } from "@/components/cards-02/upcoming-payments"
 
 export default function Page() {
   const [selectedValue, setSelectedValue] = React.useState("")
-  const [isChecked, setIsChecked] = React.useState(false)
+  const [isChecked, setIsChecked] = React.useState<boolean | "indeterminate">(false)
   const [isToggled, setIsToggled] = React.useState(false)
   const [sliderValue, setSliderValue] = React.useState([50])
   const [progress, setProgress] = React.useState(65)
