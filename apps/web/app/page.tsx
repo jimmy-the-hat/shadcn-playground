@@ -246,6 +246,75 @@ import {
   SidebarTrigger,
 } from "@workspace/ui/components/sidebar"
 import { Toaster } from "@workspace/ui/components/sonner"
+import { MobileNav } from "@/components/mobile-nav"
+import { ActivateAgentDialog } from "@/components/cards/activate-agent-dialog"
+import { AnalyticsCard } from "@/components/cards/analytics-card"
+import { AnomalyAlert } from "@/components/cards/anomaly-alert"
+import { AssignIssue } from "@/components/cards/assign-issue"
+import { BarChartCard } from "@/components/cards/bar-chart-card"
+import { BarVisualizerCard } from "@/components/cards/bar-visualizer"
+import { BookAppointment } from "@/components/cards/book-appointment"
+import { CodespacesCard } from "@/components/cards/codespaces-card"
+import { ContributionsActivity } from "@/components/cards/contributions-activity"
+import { Contributors } from "@/components/cards/contributors"
+import { EnvironmentVariables } from "@/components/cards/environment-variables"
+import { FeedbackForm } from "@/components/cards/feedback-form"
+import { FileUpload } from "@/components/cards/file-upload"
+import { GithubProfile } from "@/components/cards/github-profile"
+import { IconPreviewGrid } from "@/components/cards/icon-preview-grid"
+import { InviteTeam } from "@/components/cards/invite-team"
+import { Invoice } from "@/components/cards/invoice"
+import { LiveWaveformCard } from "@/components/cards/live-waveform"
+import { NoTeamMembers } from "@/components/cards/no-team-members"
+import { NotFound } from "@/components/cards/not-found"
+import { ObservabilityCard } from "@/components/cards/observability-card"
+import { PieChartCard } from "@/components/cards/pie-chart-card"
+import { ReportBug } from "@/components/cards/report-bug"
+import { ShippingAddress } from "@/components/cards/shipping-address"
+import { Shortcuts } from "@/components/cards/shortcuts"
+import { SkeletonLoading } from "@/components/cards/skeleton-loading"
+import { SleepReport } from "@/components/cards/sleep-report"
+import { StyleOverview } from "@/components/cards/style-overview"
+import { TypographySpecimen } from "@/components/cards/typography-specimen"
+import { UIElements } from "@/components/cards/ui-elements"
+import { UsageCard } from "@/components/cards/usage-card"
+import { Visitors } from "@/components/cards/visitors"
+import { WeeklyFitnessSummary } from "@/components/cards/weekly-fitness-summary"
+import { AccountAccess } from "@/components/cards-02/account-access"
+import { AlbumCard } from "@/components/cards-02/album-card"
+import { CardOverview } from "@/components/cards-02/card-overview"
+import { CatalogToolbar } from "@/components/cards-02/catalog-toolbar"
+import { ClaimableBalance } from "@/components/cards-02/claimable-balance"
+import { ContributionHistory } from "@/components/cards-02/contribution-history"
+import { CoverArt } from "@/components/cards-02/cover-art"
+import { DividendIncome } from "@/components/cards-02/dividend-income"
+import { EmptyConnectBank } from "@/components/cards-02/empty-connect-bank"
+import { EmptyDistributeTrack } from "@/components/cards-02/empty-distribute-track"
+import { EmptyExploreCatalog } from "@/components/cards-02/empty-explore-catalog"
+import { Faq } from "@/components/cards-02/faq"
+import { FrontDoor } from "@/components/cards-02/front-door"
+import { IndexInvesting } from "@/components/cards-02/index-investing"
+import { KitchenIsland } from "@/components/cards-02/kitchen-island"
+import { LoadingCard } from "@/components/cards-02/loading-card"
+import { NewMilestone } from "@/components/cards-02/new-milestone"
+import { NotificationSettings } from "@/components/cards-02/notification-settings"
+import { Payments } from "@/components/cards-02/payments"
+import { PayoutThreshold } from "@/components/cards-02/payout-threshold"
+import { PowerUsage } from "@/components/cards-02/power-usage"
+import { Preferences } from "@/components/cards-02/preferences"
+import { QrConnect } from "@/components/cards-02/qr-connect"
+import { ReceivingMethod } from "@/components/cards-02/receiving-method"
+import { RecentTransactions } from "@/components/cards-02/recent-transactions"
+import { ReleaseCatalog } from "@/components/cards-02/release-catalog"
+import { RollerShades } from "@/components/cards-02/roller-shades"
+import { SavingsProgress } from "@/components/cards-02/savings-progress"
+import { SavingsTargets } from "@/components/cards-02/savings-targets"
+import { SidebarNav } from "@/components/cards-02/sidebar-nav"
+import { SocialLinks } from "@/components/cards-02/social-links"
+import { StockPerformance } from "@/components/cards-02/stock-performance"
+import { SyncingState } from "@/components/cards-02/syncing-state"
+import { TransferFunds } from "@/components/cards-02/transfer-funds"
+import { UpcomingPayments } from "@/components/cards-02/upcoming-payments"
 
 export default function Page() {
   const [selectedValue, setSelectedValue] = React.useState("")
@@ -265,14 +334,101 @@ export default function Page() {
     <TooltipProvider>
       <div className="min-h-svh bg-background">
         <div className="container mx-auto px-4 py-8">
-          <header className="mb-12 text-center">
-            <h1 className="mb-4 text-4xl font-bold">
-              Component Library Showcase
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Complete UI component library with all variants and examples
-            </p>
+          <header className="mb-12">
+            <div className="mb-6 md:hidden">
+              <MobileNav />
+            </div>
+            <div className="text-center">
+              <h1 className="mb-4 text-4xl font-bold">
+                Component Library Showcase
+              </h1>
+              <p className="text-lg text-muted-foreground">
+                Complete UI component library with all variants and examples
+              </p>
+            </div>
           </header>
+
+          {/* Preview Cards */}
+          <section className="mb-16">
+            <h2 className="mb-6 text-2xl font-semibold">Preview Cards</h2>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <ActivateAgentDialog />
+              <AnalyticsCard />
+              <AnomalyAlert />
+              <AssignIssue />
+              <BarChartCard />
+              <BarVisualizerCard />
+              <BookAppointment />
+              <CodespacesCard />
+              <ContributionsActivity />
+              <Contributors />
+              <EnvironmentVariables />
+              <FeedbackForm />
+              <FileUpload />
+              <GithubProfile />
+              <IconPreviewGrid />
+              <InviteTeam />
+              <Invoice />
+              <LiveWaveformCard />
+              <NoTeamMembers />
+              <NotFound />
+              <ObservabilityCard />
+              <PieChartCard />
+              <ReportBug />
+              <ShippingAddress />
+              <Shortcuts />
+              <SkeletonLoading />
+              <SleepReport />
+              <StyleOverview />
+              <TypographySpecimen />
+              <UIElements />
+              <UsageCard />
+              <Visitors />
+              <WeeklyFitnessSummary />
+            </div>
+          </section>
+
+          {/* Preview Cards 02 */}
+          <section className="mb-16">
+            <h2 className="mb-6 text-2xl font-semibold">Preview Cards 02</h2>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <AccountAccess />
+              <AlbumCard />
+              <CardOverview />
+              <CatalogToolbar />
+              <ClaimableBalance />
+              <ContributionHistory />
+              <CoverArt />
+              <DividendIncome />
+              <EmptyConnectBank />
+              <EmptyDistributeTrack />
+              <EmptyExploreCatalog />
+              <Faq />
+              <FrontDoor />
+              <IndexInvesting />
+              <KitchenIsland />
+              <LoadingCard />
+              <NewMilestone />
+              <NotificationSettings />
+              <Payments />
+              <PayoutThreshold />
+              <PowerUsage />
+              <Preferences />
+              <QrConnect />
+              <ReceivingMethod />
+              <RecentTransactions />
+              <ReleaseCatalog />
+              <RollerShades />
+              <SavingsProgress />
+              <SavingsTargets />
+              <SidebarNav />
+              <SocialLinks />
+              <StockPerformance />
+              <SyncingState />
+              <TransferFunds />
+              <UpcomingPayments />
+            </div>
+          </section>
 
           <div className="space-y-16">
             {/* Buttons */}
