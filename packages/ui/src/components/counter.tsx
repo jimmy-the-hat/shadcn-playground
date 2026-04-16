@@ -49,11 +49,11 @@ function Counter({
     >
       <Button
         variant="outline"
-        size="icon"
+        size="icon-lg"
         onClick={() => adjust(-1)}
         disabled={!canDecrement1}
         aria-label="Decrease by 1"
-        className="size-[68px] rounded-full text-base font-normal"
+        className="rounded-full text-xs font-normal"
       >
         −1.0
       </Button>
@@ -63,7 +63,7 @@ function Counter({
         onClick={() => adjust(-0.1)}
         disabled={!canDecrement01}
         aria-label="Decrease by 0.1"
-        className="size-[54px] rounded-full text-sm font-normal"
+        className="rounded-full text-xs font-normal"
       >
         −0.1
       </Button>
@@ -75,7 +75,7 @@ function Counter({
           </span>
         )}
         <div
-          className="text-center font-sans text-5xl font-bold tabular-nums"
+          className="text-center font-sans text-3xl font-bold tabular-nums"
           aria-live="polite"
           aria-label={`Value: ${value.toFixed(1)}`}
         >
@@ -89,17 +89,17 @@ function Counter({
         onClick={() => adjust(0.1)}
         disabled={!canIncrement01}
         aria-label="Increase by 0.1"
-        className="size-[54px] rounded-full text-sm font-normal"
+        className="rounded-full text-xs font-normal"
       >
         +0.1
       </Button>
       <Button
         variant="outline"
-        size="icon"
+        size="icon-lg"
         onClick={() => adjust(1)}
         disabled={!canIncrement1}
         aria-label="Increase by 1"
-        className="size-[68px] rounded-full text-base font-normal"
+        className="rounded-full text-xs font-normal"
       >
         +1.0
       </Button>
