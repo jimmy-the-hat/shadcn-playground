@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { Minus, Plus } from "lucide-react"
 
 import { cn } from "@workspace/ui/lib/utils"
 import { Button } from "@workspace/ui/components/button"
@@ -44,30 +43,31 @@ function Counter({
   return (
     <div
       data-slot="counter"
-      className={cn("inline-flex items-center gap-1", className)}
+      className={cn("inline-flex items-center gap-2", className)}
     >
       <Button
         variant="outline"
-        size="icon-sm"
+        size="icon-lg"
         onClick={() => adjust(-1)}
         disabled={!canDecrement1}
         aria-label="Decrease by 1"
+        className="rounded-full text-sm font-semibold"
       >
-        <Minus />
+        −1
       </Button>
       <Button
-        variant="ghost"
-        size="icon-sm"
+        variant="outline"
+        size="icon"
         onClick={() => adjust(-0.1)}
         disabled={!canDecrement01}
         aria-label="Decrease by 0.1"
-        className="text-muted-foreground text-xs"
+        className="rounded-full text-[11px] font-semibold"
       >
-        .1
+        −.1
       </Button>
 
       <div
-        className="mx-2 min-w-16 text-center font-mono text-2xl font-semibold tabular-nums"
+        className="mx-1 min-w-16 text-center font-mono text-2xl font-semibold tabular-nums"
         aria-live="polite"
         aria-label={`Value: ${value.toFixed(1)}`}
       >
@@ -75,23 +75,24 @@ function Counter({
       </div>
 
       <Button
-        variant="ghost"
-        size="icon-sm"
+        variant="outline"
+        size="icon"
         onClick={() => adjust(0.1)}
         disabled={!canIncrement01}
         aria-label="Increase by 0.1"
-        className="text-muted-foreground text-xs"
+        className="rounded-full text-[11px] font-semibold"
       >
-        .1
+        +.1
       </Button>
       <Button
         variant="outline"
-        size="icon-sm"
+        size="icon-lg"
         onClick={() => adjust(1)}
         disabled={!canIncrement1}
         aria-label="Increase by 1"
+        className="rounded-full text-sm font-semibold"
       >
-        <Plus />
+        +1
       </Button>
     </div>
   )
