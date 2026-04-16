@@ -235,7 +235,11 @@ import { StockPerformance } from "@/components/cards-02/stock-performance"
 import { SyncingState } from "@/components/cards-02/syncing-state"
 import { TransferFunds } from "@/components/cards-02/transfer-funds"
 import { UpcomingPayments } from "@/components/cards-02/upcoming-payments"
-import { PlayerStats } from "@/components/cards-02/player-stats"
+import {
+  PlayerStatsDefault,
+  PlayerStatsVariant1,
+  PlayerStatsVariant2,
+} from "@/components/cards-02/player-stats"
 import { Item, ItemContent, ItemSeparator } from "@workspace/ui/components/item"
 import { Counter } from "@workspace/ui/components/counter"
 
@@ -352,7 +356,9 @@ export default function Page() {
               <SyncingState />
               <TransferFunds />
               <UpcomingPayments />
-              <PlayerStats />
+              <PlayerStatsDefault />
+              <PlayerStatsVariant1 />
+              <PlayerStatsVariant2 />
             </div>
           </section>
 
