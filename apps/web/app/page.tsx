@@ -236,6 +236,7 @@ import { SyncingState } from "@/components/cards-02/syncing-state"
 import { TransferFunds } from "@/components/cards-02/transfer-funds"
 import { UpcomingPayments } from "@/components/cards-02/upcoming-payments"
 import { Item, ItemContent, ItemSeparator } from "@workspace/ui/components/item"
+import { Counter } from "@workspace/ui/components/counter"
 
 export default function Page() {
   const [selectedValue, setSelectedValue] = React.useState("")
@@ -595,6 +596,25 @@ export default function Page() {
                       step={1}
                       className="mt-2"
                     />
+                  </div>
+                </CardContent>
+              </Card>
+            </section>
+
+            {/* Counter */}
+            <section>
+              <h2 id="counter" className="mb-6 text-2xl font-semibold">Counter</h2>
+              <Card>
+                <CardContent className="p-6">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="mb-4 text-lg font-medium">Default</h3>
+                      <Counter />
+                    </div>
+                    <div>
+                      <h3 className="mb-4 text-lg font-medium">With bounds (0 – 10)</h3>
+                      <Counter defaultValue={5} min={0} max={10} />
+                    </div>
                   </div>
                 </CardContent>
               </Card>
