@@ -2,7 +2,9 @@ import * as React from "react"
 
 import { cn } from "@workspace/ui/lib/utils"
 
-/**
+/* -----------------------------------------------------------------------
+ * RADIUS
+ * -----------------------------------------------------------------------
  * Supported border-radius variants for the Card component.
  *
  * These map directly to the project's Tailwind `--radius-*` CSS custom
@@ -17,7 +19,7 @@ import { cn } from "@workspace/ui/lib/utils"
  *   inner_radius = outer_radius − gap_between_cards
  * In practice, dropping one or two steps in the scale is close enough
  * and avoids hard-coding pixel math.
- */
+ * ----------------------------------------------------------------------- */
 type CardRounded = "4xl" | "3xl" | "2xl" | "xl" | "none"
 
 /**
@@ -41,11 +43,58 @@ const cardRadiusMap: Record<CardRounded, string> = {
   none: "0px",
 }
 
+/* -----------------------------------------------------------------------
+ * PADDING (density)
+ * -----------------------------------------------------------------------
+ * Controls the internal spacing density of the entire card — vertical
+ * padding (py) and gap on the Card itself, horizontal padding (px) on
+ * child components (CardHeader, CardContent, CardFooter).
+ *
+ * Uses a CSS custom property (`--card-padding`) so that all card
+ * sub-components automatically inherit the spacing from their parent
+ * Card, exactly mirroring the pattern used for `--card-radius`.
+ *
+ * This is the primary mechanism for creating compact nested cards:
+ *
+ *   <Card flush>
+ *     <Card rounded="3xl" padding="sm">
+ *       <CardHeader>…</CardHeader>
+ *       <CardContent>…</CardContent>
+ *     </Card>
+ *   </Card>
+ *
+ * The `padding` prop uniformly tightens everything — py, gap, and px —
+ * so the card feels proportionally denser without per-slot overrides.
+ *
+ * Scale reference (Tailwind v4 spacing):
+ *   default → 1.5rem (24px, equivalent to p-6)
+ *   sm      → 0.75rem (12px, equivalent to p-3)
+ *   none    → 0px
+ * ----------------------------------------------------------------------- */
+type CardPadding = "default" | "sm" | "none"
+
+/**
+ * Maps each `padding` prop value to a CSS length. These are set as
+ * `--card-padding` on the Card element.
+ *
+ * The values use Tailwind's `--spacing` function where available so they
+ * scale if the project overrides the base spacing unit. The fallback
+ * values (1.5rem, 0.75rem) match Tailwind's default 4px grid:
+ *   p-6 = 6 × 4px = 24px = 1.5rem
+ *   p-3 = 3 × 4px = 12px = 0.75rem
+ */
+const cardPaddingMap: Record<CardPadding, string> = {
+  default: "1.5rem",
+  sm: "0.75rem",
+  none: "0px",
+}
+
 function Card({
   className,
   size = "default",
   flush = false,
   rounded = "4xl",
+  padding = "default",
   style,
   ...props
 }: React.ComponentProps<"div"> & {
@@ -71,19 +120,52 @@ function Card({
    * </Card>
    */
   rounded?: CardRounded
+  /**
+   * Controls the spacing density of the card and all its sub-components.
+   *
+   * Sets a CSS custom property (`--card-padding`) that the Card uses for
+   * its vertical padding and gap, and that child components (CardHeader,
+   * CardContent, CardFooter) use for their horizontal padding.
+   *
+   * This keeps spacing uniform across the entire card — one prop to
+   * tighten or loosen everything proportionally.
+   *
+   * @default "default"
+   *
+   * @example
+   * // Compact nested card
+   * <Card flush>
+   *   <Card rounded="3xl" padding="sm">
+   *     <CardHeader>…</CardHeader>
+   *     <CardContent>…</CardContent>
+   *   </Card>
+   * </Card>
+   */
+  padding?: CardPadding
 }) {
   return (
     <div
       data-slot="card"
       data-size={size}
-      /**
-       * --card-radius is set here and inherited by CardHeader, CardFooter,
-       * and the image child selectors below. This single point of truth
-       * means changing the `rounded` prop on Card automatically updates
-       * every child's border-radius.
+      /*
+       * Two CSS custom properties are set here and inherited by all
+       * card sub-components:
+       *
+       *   --card-radius  → consumed by rounded-() in Card, CardHeader,
+       *                     CardFooter, and image child selectors
+       *   --card-padding → consumed by p-() / px-() / py-() / gap-()
+       *                     in Card and all child slot components
+       *
+       * This "set once, inherit everywhere" pattern avoids prop drilling
+       * and keeps the child components' class strings static — they
+       * always reference the variable, never a concrete value.
        */
       style={
-        { "--card-radius": cardRadiusMap[rounded], ...style } as React.CSSProperties
+        {
+          "--card-radius": cardRadiusMap[rounded],
+          "--card-padding": cardPaddingMap[padding],
+          ...style,
+        } as React.CSSProperties
       }
       className={cn(
         /*
@@ -95,8 +177,19 @@ function Card({
          * also reference --card-radius so full-bleed images match the
          * card's corners regardless of which variant is active.
          */
-        "group/card flex flex-col overflow-hidden rounded-(--card-radius) bg-card text-sm text-card-foreground shadow-md ring-1 ring-foreground/5 has-[>img:first-child]:pt-0 dark:ring-foreground/10 *:[img:first-child]:rounded-t-[var(--card-radius)] *:[img:last-child]:rounded-b-[var(--card-radius)]",
-        !flush && "gap-6 py-6 data-[size=sm]:gap-4 data-[size=sm]:py-4",
+        "group/card flex flex-col overflow-hidden rounded-(--card-radius) bg-card text-sm text-card-foreground shadow-md ring-1 ring-foreground/5 has-[>img:first-child]:pt-0 dark:ring-foreground/10 *:[img:first-child]:rounded-t-(--card-radius) *:[img:last-child]:rounded-b-(--card-radius)",
+        /*
+         * When not flush, apply vertical padding and gap using the
+         * --card-padding variable. This means `padding="sm"` tightens
+         * the vertical spacing automatically alongside the horizontal
+         * spacing in child components.
+         *
+         * The `data-[size=sm]` overrides are a legacy mechanism from
+         * before the padding prop existed — they remain for backwards
+         * compatibility with the `size="sm"` API.
+         */
+        !flush &&
+          "py-(--card-padding) gap-(--card-padding) data-[size=sm]:gap-4 data-[size=sm]:py-4",
         className
       )}
       {...props}
@@ -110,12 +203,15 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-header"
       className={cn(
         /*
-         * rounded-t-(--card-radius,2rem) — inherits the Card's
-         * radius for its top corners. The fallback (2rem ≈ radius-4xl)
-         * ensures sensible rounding if CardHeader is ever rendered
-         * outside a Card context (e.g. in tests or Storybook).
+         * px-(--card-padding,1.5rem) — inherits the Card's padding for
+         * horizontal inset. The fallback (1.5rem = p-6) ensures sensible
+         * spacing if CardHeader is ever rendered outside a Card context
+         * (e.g. in tests or Storybook).
+         *
+         * rounded-t-(--card-radius,2rem) — same inheritance pattern for
+         * the top border-radius, with a 2rem (≈ radius-4xl) fallback.
          */
-        "group/card-header @container/card-header grid auto-rows-min items-start gap-1.5 rounded-t-(--card-radius,2rem) px-6 group-data-[size=sm]/card:px-4 has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-6 group-data-[size=sm]/card:[.border-b]:pb-4",
+        "group/card-header @container/card-header grid auto-rows-min items-start gap-1.5 rounded-t-(--card-radius,2rem) px-(--card-padding,1.5rem) group-data-[size=sm]/card:px-4 has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-6 group-data-[size=sm]/card:[.border-b]:pb-4",
         className
       )}
       {...props}
@@ -160,7 +256,15 @@ function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-content"
-      className={cn("px-6 group-data-[size=sm]/card:px-4", className)}
+      className={cn(
+        /*
+         * px-(--card-padding,1.5rem) — inherits horizontal padding from
+         * the parent Card's --card-padding variable. When Card uses
+         * padding="sm", this automatically tightens to 0.75rem (12px).
+         */
+        "px-(--card-padding,1.5rem) group-data-[size=sm]/card:px-4",
+        className
+      )}
       {...props}
     />
   )
@@ -172,10 +276,11 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-footer"
       className={cn(
         /*
-         * Same pattern as CardHeader — inherits --card-radius for the
-         * bottom corners with a 2rem fallback for standalone usage.
+         * Same inheritance pattern as CardHeader and CardContent:
+         * --card-padding for horizontal spacing, --card-radius for
+         * bottom corner rounding, both with sensible fallbacks.
          */
-        "flex items-center rounded-b-(--card-radius,2rem) px-6 group-data-[size=sm]/card:px-4 [.border-t]:pt-6 group-data-[size=sm]/card:[.border-t]:pt-4",
+        "flex items-center rounded-b-(--card-radius,2rem) px-(--card-padding,1.5rem) group-data-[size=sm]/card:px-4 [.border-t]:pt-6 group-data-[size=sm]/card:[.border-t]:pt-4",
         className
       )}
       {...props}

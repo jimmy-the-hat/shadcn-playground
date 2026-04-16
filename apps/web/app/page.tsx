@@ -235,6 +235,7 @@ import { StockPerformance } from "@/components/cards-02/stock-performance"
 import { SyncingState } from "@/components/cards-02/syncing-state"
 import { TransferFunds } from "@/components/cards-02/transfer-funds"
 import { UpcomingPayments } from "@/components/cards-02/upcoming-payments"
+import { Item, ItemContent, ItemSeparator } from "@workspace/ui/components/item"
 
 export default function Page() {
   const [selectedValue, setSelectedValue] = React.useState("")
@@ -423,8 +424,8 @@ export default function Page() {
                   </CardContent>
                 </Card>
                 <Card flush>
-                  <div className="flex-1 p-2 pb-0">
-                    <Card rounded="3xl" className="h-full">
+                  <div className="flex-1 p-3 pb-0">
+                    <Card rounded="3xl" padding="sm" className="h-full">
                       <CardHeader>
                         <CardTitle>Inner Card</CardTitle>
                         <CardDescription>
@@ -432,7 +433,30 @@ export default function Page() {
                         </CardDescription>
                       </CardHeader>
                       <CardContent>
-                        <p>Nested card content area.</p>
+                        <Item
+                          variant="muted"
+                          className="flex-col items-stretch"
+                        >
+                          <ItemContent className="gap-3">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm text-muted-foreground">
+                                My opening balance
+                              </span>
+                              <span className="text-sm font-medium tabular-nums">
+                                6.9m
+                              </span>
+                            </div>
+                            <ItemSeparator />
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm text-muted-foreground">
+                                My post sale balance
+                              </span>
+                              <span className="text-sm font-semibold tabular-nums">
+                                5.2m
+                              </span>
+                            </div>
+                          </ItemContent>
+                        </Item>
                       </CardContent>
                     </Card>
                   </div>
