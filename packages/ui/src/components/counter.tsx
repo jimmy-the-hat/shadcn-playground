@@ -45,64 +45,64 @@ function Counter({
   return (
     <div
       data-slot="counter"
-      className={cn("inline-flex items-center gap-3", className)}
+      className={cn("inline-flex flex-col items-center gap-2", className)}
     >
-      <Button
-        variant="outline"
-        size="icon-lg"
-        onClick={() => adjust(-1)}
-        disabled={!canDecrement1}
-        aria-label="Decrease by 1"
-        className="rounded-full text-xs font-normal"
-      >
-        −1.0
-      </Button>
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => adjust(-0.1)}
-        disabled={!canDecrement01}
-        aria-label="Decrease by 0.1"
-        className="rounded-full text-xs font-normal"
-      >
-        −0.1
-      </Button>
+      {label && (
+        <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+          {label}
+        </span>
+      )}
+      <div className="inline-flex items-center gap-3">
+        <Button
+          variant="outline"
+          size="icon-lg"
+          onClick={() => adjust(-1)}
+          disabled={!canDecrement1}
+          aria-label="Decrease by 1"
+          className="rounded-full text-xs font-normal"
+        >
+          −1.0
+        </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => adjust(-0.1)}
+          disabled={!canDecrement01}
+          aria-label="Decrease by 0.1"
+          className="rounded-full text-xs font-normal"
+        >
+          −0.1
+        </Button>
 
-      <div className="mx-4 flex flex-col items-center gap-1">
-        {label && (
-          <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            {label}
-          </span>
-        )}
         <div
-          className="text-center font-sans text-3xl font-bold tabular-nums"
+          className="mx-4 text-center font-sans text-3xl font-bold tabular-nums"
           aria-live="polite"
           aria-label={`Value: ${value.toFixed(1)}`}
         >
           {value.toFixed(1)}
         </div>
-      </div>
 
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => adjust(0.1)}
-        disabled={!canIncrement01}
-        aria-label="Increase by 0.1"
-        className="rounded-full text-xs font-normal"
-      >
-        +0.1
-      </Button>
-      <Button
-        variant="outline"
-        size="icon-lg"
-        onClick={() => adjust(1)}
-        disabled={!canIncrement1}
-        aria-label="Increase by 1"
-        className="rounded-full text-xs font-normal"
-      >
-        +1.0
-      </Button>
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={() => adjust(0.1)}
+          disabled={!canIncrement01}
+          aria-label="Increase by 0.1"
+          className="rounded-full text-xs font-normal"
+        >
+          +0.1
+        </Button>
+        <Button
+          variant="outline"
+          size="icon-lg"
+          onClick={() => adjust(1)}
+          disabled={!canIncrement1}
+          aria-label="Increase by 1"
+          className="rounded-full text-xs font-normal"
+        >
+          +1.0
+        </Button>
+      </div>
     </div>
   )
 }
