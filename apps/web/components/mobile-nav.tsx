@@ -13,6 +13,8 @@ import {
 } from "@workspace/ui/components/popover"
 
 const NAV_ITEMS = [
+  { name: "Preview Cards", href: "#preview-cards" },
+  { name: "Preview Cards 02", href: "#preview-cards-02" },
   { name: "Buttons", href: "#buttons" },
   { name: "Cards", href: "#cards" },
   { name: "Badges", href: "#badges" },
