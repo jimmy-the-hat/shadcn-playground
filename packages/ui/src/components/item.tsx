@@ -19,15 +19,49 @@ function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/*
+ * Unlike Card's --card-padding (which controls card-wide density and
+ * rightly lives on the parent), separator margin is a per-instance
+ * concern — you may want different spacing for different separators
+ * within the same Item. So `margin` is a direct prop, not an inherited
+ * CSS variable.
+ *
+ * The prop accepts any value from the Tailwind spacing scale as a
+ * CSS length string. Defaults to "0.5rem" (my-2) to preserve the
+ * original behaviour.
+ */
+type ItemSeparatorMargin = "default" | "none"
+
+const itemSeparatorMarginMap: Record<ItemSeparatorMargin, string> = {
+  default: "0.5rem",
+  none: "0px",
+}
+
 function ItemSeparator({
   className,
+  margin = "default",
+  style,
   ...props
-}: React.ComponentProps<typeof Separator>) {
+}: React.ComponentProps<typeof Separator> & {
+  /**
+   * Controls the vertical margin (my) around the separator.
+   *
+   * @default "default" (0.5rem / my-2)
+   *
+   * @example
+   * <ItemSeparator />                // default spacing
+   * <ItemSeparator margin="none" />  // flush, no vertical margin
+   */
+  margin?: ItemSeparatorMargin
+}) {
   return (
     <Separator
       data-slot="item-separator"
       orientation="horizontal"
-      className={cn("my-2", className)}
+      style={
+        { "--item-separator-margin": itemSeparatorMarginMap[margin], ...style } as React.CSSProperties
+      }
+      className={cn("my-(--item-separator-margin)", className)}
       {...props}
     />
   )

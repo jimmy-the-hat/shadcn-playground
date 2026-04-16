@@ -446,7 +446,7 @@ export default function Page() {
                                 6.9m
                               </span>
                             </div>
-                            <ItemSeparator />
+                            <ItemSeparator margin="none" />
                             <div className="flex items-center justify-between">
                               <span className="text-sm text-muted-foreground">
                                 My post sale balance
