@@ -11,6 +11,7 @@ interface CounterProps {
   onChange?: (value: number) => void
   min?: number
   max?: number
+  label?: string
   className?: string
 }
 
@@ -20,6 +21,7 @@ function Counter({
   onChange,
   min,
   max,
+  label,
   className,
 }: CounterProps) {
   const [internalValue, setInternalValue] = React.useState(defaultValue)
@@ -43,17 +45,17 @@ function Counter({
   return (
     <div
       data-slot="counter"
-      className={cn("inline-flex items-center gap-2", className)}
+      className={cn("inline-flex items-center gap-3", className)}
     >
       <Button
         variant="outline"
-        size="icon-lg"
+        size="icon"
         onClick={() => adjust(-1)}
         disabled={!canDecrement1}
         aria-label="Decrease by 1"
-        className="rounded-full text-sm font-semibold"
+        className="size-[68px] rounded-full text-base font-normal"
       >
-        −1
+        −1.0
       </Button>
       <Button
         variant="outline"
@@ -61,17 +63,24 @@ function Counter({
         onClick={() => adjust(-0.1)}
         disabled={!canDecrement01}
         aria-label="Decrease by 0.1"
-        className="rounded-full text-[11px] font-semibold"
+        className="size-[54px] rounded-full text-sm font-normal"
       >
-        −.1
+        −0.1
       </Button>
 
-      <div
-        className="mx-1 min-w-16 text-center font-mono text-2xl font-semibold tabular-nums"
-        aria-live="polite"
-        aria-label={`Value: ${value.toFixed(1)}`}
-      >
-        {value.toFixed(1)}
+      <div className="mx-4 flex flex-col items-center gap-1">
+        {label && (
+          <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+            {label}
+          </span>
+        )}
+        <div
+          className="text-center font-sans text-5xl font-bold tabular-nums"
+          aria-live="polite"
+          aria-label={`Value: ${value.toFixed(1)}`}
+        >
+          {value.toFixed(1)}
+        </div>
       </div>
 
       <Button
@@ -80,19 +89,19 @@ function Counter({
         onClick={() => adjust(0.1)}
         disabled={!canIncrement01}
         aria-label="Increase by 0.1"
-        className="rounded-full text-[11px] font-semibold"
+        className="size-[54px] rounded-full text-sm font-normal"
       >
-        +.1
+        +0.1
       </Button>
       <Button
         variant="outline"
-        size="icon-lg"
+        size="icon"
         onClick={() => adjust(1)}
         disabled={!canIncrement1}
         aria-label="Increase by 1"
-        className="rounded-full text-sm font-semibold"
+        className="size-[68px] rounded-full text-base font-normal"
       >
-        +1
+        +1.0
       </Button>
     </div>
   )

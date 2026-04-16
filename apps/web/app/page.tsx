@@ -608,12 +608,10 @@ export default function Page() {
                 <CardContent className="p-6">
                   <div className="space-y-6">
                     <div>
-                      <h3 className="mb-4 text-lg font-medium">Default</h3>
-                      <Counter />
+                      <Counter label="Default" />
                     </div>
                     <div>
-                      <h3 className="mb-4 text-lg font-medium">With bounds (0 – 10)</h3>
-                      <Counter defaultValue={5} min={0} max={10} />
+                      <Counter label="Bounded" defaultValue={5} min={0} max={10} />
                     </div>
                   </div>
                 </CardContent>
