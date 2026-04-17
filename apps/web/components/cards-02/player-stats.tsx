@@ -2,6 +2,15 @@ import * as React from "react"
 
 import { Item } from "@workspace/ui/components/item"
 import { Separator } from "@workspace/ui/components/separator"
+import { cn } from "@workspace/ui/lib/utils"
+
+const DANGER_LABELS = new Set([
+  "Yellow cards",
+  "Red cards",
+  "Conceded",
+  "Missed penalty",
+  "Own goal",
+])
 
 type StatRow = {
   label: string
@@ -14,7 +23,14 @@ function StatColumn({ rows }: { rows: StatRow[] }) {
       {rows.map((row) => (
         <div key={row.label} className="flex items-center justify-between gap-3">
           <span className="text-muted-foreground">{row.label}</span>
-          <span className="font-semibold tabular-nums">{row.value}</span>
+          <span
+            className={cn(
+              "font-semibold tabular-nums",
+              DANGER_LABELS.has(row.label) && "text-[#b20000]"
+            )}
+          >
+            {row.value}
+          </span>
         </div>
       ))}
     </div>
