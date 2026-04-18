@@ -1,4 +1,4 @@
-ki isimport * as React from "react"
+import * as React from "react"
 
 import { Item } from "@workspace/ui/components/item"
 import { Separator } from "@workspace/ui/components/separator"
