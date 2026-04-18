@@ -1,4 +1,4 @@
-import * as React from "react"
+ki isimport * as React from "react"
 
 import { Item } from "@workspace/ui/components/item"
 import { Separator } from "@workspace/ui/components/separator"
@@ -56,10 +56,11 @@ export function PlayerStatsDefault() {
         { label: "Subs", value: 7 },
         { label: "Goals", value: 5 },
         { label: "Assists", value: 18 },
+        { label: "Clean sheet", value: 18 },
         { label: "Yellow cards", value: 21 },
         { label: "Red cards", value: 7 },
         { label: "Conceded", value: 5 },
-        { label: "Clean sheet", value: 18 },
+        
       ]}
     />
   )
@@ -74,11 +75,11 @@ export function PlayerStatsVariant1() {
         { label: "Goals", value: 0 },
         { label: "Assists", value: 0 },
         { label: "Saves", value: 61 },
-        { label: "Yellow cards", value: 1 },
-        { label: "Red cards", value: 0 },
-        { label: "Conceded", value: 31 },
         { label: "Clean sheet", value: 9 },
         { label: "Saved pen", value: 0 },
+        { label: "Yellow cards", value: 1 },
+        { label: "Red cards", value: 0 },
+        { label: "Conceded", value: 31 }
       ]}
     />
   )
