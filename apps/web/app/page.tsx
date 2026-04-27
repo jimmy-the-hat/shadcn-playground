@@ -467,16 +467,16 @@ export default function Page() {
                           </ItemContent>
                         </Item>
                         <Item variant="muted" className="items-stretch">
-                          <div className="flex flex-1 flex-col items-center gap-1">
+                          <div className="flex flex-1 flex-col items-center gap-1 text-center">
                             <span className="text-sm text-muted-foreground">
-                              Cash balance
+                              Balance
                             </span>
                             <span className="text-sm font-medium tabular-nums">
                               6.9m
                             </span>
                           </div>
                           <Separator orientation="vertical" />
-                          <div className="flex flex-1 flex-col items-center gap-1">
+                          <div className="flex flex-1 flex-col items-center gap-1 text-center">
                             <span className="text-sm text-muted-foreground">
                               Liability
                             </span>
@@ -485,12 +485,31 @@ export default function Page() {
                             </span>
                           </div>
                           <Separator orientation="vertical" />
-                          <div className="flex flex-1 flex-col items-center gap-1">
+                          <div className="flex flex-1 flex-col items-center gap-1 text-center">
                             <span className="text-sm text-muted-foreground">
-                              Post sale balance
+                              After sale
                             </span>
                             <span className="text-sm font-medium tabular-nums">
                               5.2m
+                            </span>
+                          </div>
+                        </Item>
+                        <Item variant="muted" className="items-stretch">
+                          <div className="flex flex-1 flex-col items-center gap-1 text-center">
+                            <span className="text-sm text-muted-foreground">
+                              Cash in bank
+                            </span>
+                            <span className="text-sm font-medium tabular-nums">
+                              6.9m
+                            </span>
+                          </div>
+                          <Separator orientation="vertical" />
+                          <div className="flex flex-1 flex-col items-center gap-1 text-center">
+                            <span className="text-sm text-muted-foreground">
+                              Transfer liability
+                            </span>
+                            <span className="text-sm font-medium tabular-nums">
+                              1.7m
                             </span>
                           </div>
                         </Item>
