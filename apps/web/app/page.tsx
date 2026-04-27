@@ -240,7 +240,7 @@ import {
   PlayerStatsVariant1,
   PlayerStatsVariant2,
 } from "@/components/cards-02/player-stats"
-import { Item } from "@workspace/ui/components/item"
+import { Item, ItemContent, ItemSeparator } from "@workspace/ui/components/item"
 import { Counter } from "@workspace/ui/components/counter"
 
 export default function Page() {
@@ -441,32 +441,56 @@ export default function Page() {
                           This card is nested inside the outer card
                         </CardDescription>
                       </CardHeader>
-                      <CardContent>
+                      <CardContent className="flex flex-col gap-3">
+                        <Item
+                          variant="muted"
+                          className="flex-col items-stretch"
+                        >
+                          <ItemContent className="gap-3">
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm text-muted-foreground">
+                                My opening balance
+                              </span>
+                              <span className="text-sm font-medium tabular-nums">
+                                6.9m
+                              </span>
+                            </div>
+                            <ItemSeparator margin="none" />
+                            <div className="flex items-center justify-between">
+                              <span className="text-sm text-muted-foreground">
+                                My post sale balance
+                              </span>
+                              <span className="text-sm font-semibold tabular-nums">
+                                5.2m
+                              </span>
+                            </div>
+                          </ItemContent>
+                        </Item>
                         <Item variant="muted" className="items-stretch">
-                          <div className="flex flex-1 flex-col gap-1">
+                          <div className="flex flex-1 flex-col items-center gap-1">
                             <span className="text-sm text-muted-foreground">
-                              My opening balance
+                              Cash balance
                             </span>
                             <span className="text-sm font-medium tabular-nums">
                               6.9m
                             </span>
                           </div>
                           <Separator orientation="vertical" />
-                          <div className="flex flex-1 flex-col gap-1">
+                          <div className="flex flex-1 flex-col items-center gap-1">
                             <span className="text-sm text-muted-foreground">
-                              My post sale balance
-                            </span>
-                            <span className="text-sm font-medium tabular-nums">
-                              5.2m
-                            </span>
-                          </div>
-                          <Separator orientation="vertical" />
-                          <div className="flex flex-1 flex-col gap-1">
-                            <span className="text-sm text-muted-foreground">
-                              My liability
+                              Liability
                             </span>
                             <span className="text-sm font-medium tabular-nums">
                               1.7m
+                            </span>
+                          </div>
+                          <Separator orientation="vertical" />
+                          <div className="flex flex-1 flex-col items-center gap-1">
+                            <span className="text-sm text-muted-foreground">
+                              Post sale balance
+                            </span>
+                            <span className="text-sm font-medium tabular-nums">
+                              5.2m
                             </span>
                           </div>
                         </Item>
