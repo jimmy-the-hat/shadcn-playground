@@ -456,7 +456,7 @@ export default function Page() {
                             <span className="text-sm text-muted-foreground">
                               My post sale balance
                             </span>
-                            <span className="text-sm font-semibold tabular-nums">
+                            <span className="text-sm font-medium tabular-nums">
                               5.2m
                             </span>
                           </div>
