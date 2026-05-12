@@ -279,7 +279,9 @@ export default function Page() {
 
           {/* Preview Cards */}
           <section className="mb-16">
-            <h2 id="preview-cards" className="mb-6 text-2xl font-semibold">Preview Cards</h2>
+            <h2 id="preview-cards" className="mb-6 text-2xl font-semibold">
+              Preview Cards
+            </h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               <ActivateAgentDialog />
               <AnalyticsCard />
@@ -319,7 +321,9 @@ export default function Page() {
 
           {/* Preview Cards 02 */}
           <section className="mb-16">
-            <h2 id="preview-cards-02" className="mb-6 text-2xl font-semibold">Preview Cards 02</h2>
+            <h2 id="preview-cards-02" className="mb-6 text-2xl font-semibold">
+              Preview Cards 02
+            </h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               <AccountAccess />
               <AlbumCard />
@@ -365,7 +369,9 @@ export default function Page() {
           <div className="space-y-16">
             {/* Buttons */}
             <section>
-              <h2 id="buttons" className="mb-6 text-2xl font-semibold">Buttons</h2>
+              <h2 id="buttons" className="mb-6 text-2xl font-semibold">
+                Buttons
+              </h2>
               <Card>
                 <CardContent className="p-6">
                   <div className="space-y-6">
@@ -407,7 +413,9 @@ export default function Page() {
 
             {/* Cards */}
             <section>
-              <h2 id="cards" className="mb-6 text-2xl font-semibold">Cards</h2>
+              <h2 id="cards" className="mb-6 text-2xl font-semibold">
+                Cards
+              </h2>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <Card>
                   <CardHeader>
@@ -532,7 +540,9 @@ export default function Page() {
 
             {/* Badges */}
             <section>
-              <h2 id="badges" className="mb-6 text-2xl font-semibold">Badges</h2>
+              <h2 id="badges" className="mb-6 text-2xl font-semibold">
+                Badges
+              </h2>
               <Card>
                 <CardContent className="p-6">
                   <div className="flex flex-wrap gap-4">
@@ -551,7 +561,9 @@ export default function Page() {
 
             {/* Form Elements */}
             <section>
-              <h2 id="form-elements" className="mb-6 text-2xl font-semibold">Form Elements</h2>
+              <h2 id="form-elements" className="mb-6 text-2xl font-semibold">
+                Form Elements
+              </h2>
               <Card>
                 <CardContent className="space-y-6 p-6">
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -677,7 +689,9 @@ export default function Page() {
 
             {/* Navigation */}
             <section>
-              <h2 id="navigation" className="mb-6 text-2xl font-semibold">Navigation</h2>
+              <h2 id="navigation" className="mb-6 text-2xl font-semibold">
+                Navigation
+              </h2>
               <div className="space-y-6">
                 <Card>
                   <CardContent className="p-6">
@@ -939,7 +953,9 @@ export default function Page() {
 
             {/* Menus */}
             <section>
-              <h2 id="menus" className="mb-6 text-2xl font-semibold">Menu Components</h2>
+              <h2 id="menus" className="mb-6 text-2xl font-semibold">
+                Menu Components
+              </h2>
               <div className="space-y-6">
                 <Card>
                   <CardContent className="p-6">
@@ -991,7 +1007,9 @@ export default function Page() {
 
             {/* Data Display */}
             <section>
-              <h2 id="data-display" className="mb-6 text-2xl font-semibold">Data Display</h2>
+              <h2 id="data-display" className="mb-6 text-2xl font-semibold">
+                Data Display
+              </h2>
               <div className="space-y-6">
                 <Card>
                   <CardContent className="p-6">
@@ -1040,7 +1058,9 @@ export default function Page() {
 
             {/* Loading States */}
             <section>
-              <h2 id="loading-states" className="mb-6 text-2xl font-semibold">Loading States</h2>
+              <h2 id="loading-states" className="mb-6 text-2xl font-semibold">
+                Loading States
+              </h2>
               <Card>
                 <CardContent className="p-6">
                   <div className="space-y-6">
@@ -1116,7 +1136,9 @@ export default function Page() {
 
             {/* Toggle Components */}
             <section>
-              <h2 id="toggle" className="mb-6 text-2xl font-semibold">Toggle Components</h2>
+              <h2 id="toggle" className="mb-6 text-2xl font-semibold">
+                Toggle Components
+              </h2>
               <Card>
                 <CardContent className="p-6">
                   <div className="space-y-6">
@@ -1144,7 +1166,9 @@ export default function Page() {
 
             {/* Layout Components */}
             <section>
-              <h2 id="layout" className="mb-6 text-2xl font-semibold">Layout Components</h2>
+              <h2 id="layout" className="mb-6 text-2xl font-semibold">
+                Layout Components
+              </h2>
               <div className="space-y-6">
                 <Card>
                   <CardContent className="p-6">
@@ -1181,7 +1205,9 @@ export default function Page() {
 
             {/* Toast Notification */}
             <section>
-              <h2 id="notifications" className="mb-6 text-2xl font-semibold">Notifications</h2>
+              <h2 id="notifications" className="mb-6 text-2xl font-semibold">
+                Notifications
+              </h2>
               <Card>
                 <CardContent className="p-6">
                   <Button>Show Toast (Demo Only)</Button>
