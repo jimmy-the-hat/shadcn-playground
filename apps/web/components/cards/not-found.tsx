@@ -18,32 +18,37 @@ import {
 } from "@workspace/ui/components/input-group"
 import { Kbd } from "@workspace/ui/components/kbd"
 
+import { SourceLink } from "@/components/source-link"
+
 export function NotFound() {
   return (
-    <Card>
-      <CardContent>
-        <Empty className="h-72">
-          <EmptyHeader>
-            <EmptyTitle>404 - Not Found</EmptyTitle>
-            <EmptyDescription>
-              The page you&apos;re looking for doesn&apos;t exist. Try searching
-              for what you need below.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <InputGroup className="w-3/4">
-              <InputGroupInput placeholder="Try searching for pages..." />
-              <InputGroupAddon>
-                <SearchIcon />
-              </InputGroupAddon>
-              <InputGroupAddon align="inline-end">
-                <Kbd>/</Kbd>
-              </InputGroupAddon>
-            </InputGroup>
-            <Button variant="link">Go to homepage</Button>
-          </EmptyContent>
-        </Empty>
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardContent>
+          <Empty className="h-72">
+            <EmptyHeader>
+              <EmptyTitle>404 - Not Found</EmptyTitle>
+              <EmptyDescription>
+                The page you&apos;re looking for doesn&apos;t exist. Try
+                searching for what you need below.
+              </EmptyDescription>
+            </EmptyHeader>
+            <EmptyContent>
+              <InputGroup className="w-3/4">
+                <InputGroupInput placeholder="Try searching for pages..." />
+                <InputGroupAddon>
+                  <SearchIcon />
+                </InputGroupAddon>
+                <InputGroupAddon align="inline-end">
+                  <Kbd>/</Kbd>
+                </InputGroupAddon>
+              </InputGroup>
+              <Button variant="link">Go to homepage</Button>
+            </EmptyContent>
+          </Empty>
+        </CardContent>
+      </Card>
+      <SourceLink path="apps/web/components/cards/not-found.tsx" />
+    </div>
   )
 }

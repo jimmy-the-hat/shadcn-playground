@@ -20,6 +20,8 @@ import {
   TableRow,
 } from "@workspace/ui/components/table"
 
+import { SourceLink } from "@/components/source-link"
+
 const INVOICE_ITEMS = [
   { item: "Design System License", qty: 1, unitPrice: 499 },
   { item: "Priority Support", qty: 12, unitPrice: 99 },
@@ -43,72 +45,75 @@ function formatCurrency(value: number) {
 
 export function Invoice() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Invoice #INV-2847</CardTitle>
-        <CardDescription>Due March 30, 2026</CardDescription>
-        <CardAction>
-          <Badge variant="secondary">Pending</Badge>
-        </CardAction>
-      </CardHeader>
-      <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Item</TableHead>
-              <TableHead className="text-right">Qty</TableHead>
-              <TableHead className="text-right">Rate</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {INVOICE_ITEMS.map((row) => (
-              <TableRow key={row.item}>
-                <TableCell>{row.item}</TableCell>
-                <TableCell className="text-right tabular-nums">
-                  {row.qty}
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Invoice #INV-2847</CardTitle>
+          <CardDescription>Due March 30, 2026</CardDescription>
+          <CardAction>
+            <Badge variant="secondary">Pending</Badge>
+          </CardAction>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Item</TableHead>
+                <TableHead className="text-right">Qty</TableHead>
+                <TableHead className="text-right">Rate</TableHead>
+                <TableHead className="text-right">Amount</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {INVOICE_ITEMS.map((row) => (
+                <TableRow key={row.item}>
+                  <TableCell>{row.item}</TableCell>
+                  <TableCell className="text-right tabular-nums">
+                    {row.qty}
+                  </TableCell>
+                  <TableCell className="text-right tabular-nums">
+                    {formatCurrency(row.unitPrice)}
+                  </TableCell>
+                  <TableCell className="text-right tabular-nums">
+                    {formatCurrency(row.qty * row.unitPrice)}
+                  </TableCell>
+                </TableRow>
+              ))}
+              <TableRow>
+                <TableCell colSpan={3} className="text-right">
+                  Subtotal
                 </TableCell>
                 <TableCell className="text-right tabular-nums">
-                  {formatCurrency(row.unitPrice)}
-                </TableCell>
-                <TableCell className="text-right tabular-nums">
-                  {formatCurrency(row.qty * row.unitPrice)}
+                  {formatCurrency(subtotal)}
                 </TableCell>
               </TableRow>
-            ))}
-            <TableRow>
-              <TableCell colSpan={3} className="text-right">
-                Subtotal
-              </TableCell>
-              <TableCell className="text-right tabular-nums">
-                {formatCurrency(subtotal)}
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell colSpan={3} className="text-right">
-                Tax
-              </TableCell>
-              <TableCell className="text-right tabular-nums">$0.00</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell colSpan={3} className="text-right">
-                Total Due
-              </TableCell>
-              <TableCell className="text-right tabular-nums">
-                {formatCurrency(totalDue)}
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </CardContent>
-      <CardFooter>
-        <Button variant="outline" size="sm">
-          Download PDF
-        </Button>
-        <Button size="sm" className="ml-auto">
-          Pay Now
-        </Button>
-      </CardFooter>
-    </Card>
+              <TableRow>
+                <TableCell colSpan={3} className="text-right">
+                  Tax
+                </TableCell>
+                <TableCell className="text-right tabular-nums">$0.00</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell colSpan={3} className="text-right">
+                  Total Due
+                </TableCell>
+                <TableCell className="text-right tabular-nums">
+                  {formatCurrency(totalDue)}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </CardContent>
+        <CardFooter>
+          <Button variant="outline" size="sm">
+            Download PDF
+          </Button>
+          <Button size="sm" className="ml-auto">
+            Pay Now
+          </Button>
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards/invoice.tsx" />
+    </div>
   )
 }

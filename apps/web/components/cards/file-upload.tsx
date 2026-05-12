@@ -19,27 +19,32 @@ import {
   EmptyTitle,
 } from "@workspace/ui/components/empty"
 
+import { SourceLink } from "@/components/source-link"
+
 export function FileUpload() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>File Upload</CardTitle>
-        <CardDescription>Drag and drop or browse</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Empty className="border">
-          <EmptyHeader>
-            <EmptyMedia variant="icon">
-              <CloudUploadIcon />
-            </EmptyMedia>
-            <EmptyTitle>Upload files</EmptyTitle>
-            <EmptyDescription>PNG, JPG, PDF up to 10MB</EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button>Browse Files</Button>
-          </EmptyContent>
-        </Empty>
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>File Upload</CardTitle>
+          <CardDescription>Drag and drop or browse</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Empty className="border">
+            <EmptyHeader>
+              <EmptyMedia variant="icon">
+                <CloudUploadIcon />
+              </EmptyMedia>
+              <EmptyTitle>Upload files</EmptyTitle>
+              <EmptyDescription>PNG, JPG, PDF up to 10MB</EmptyDescription>
+            </EmptyHeader>
+            <EmptyContent>
+              <Button>Browse Files</Button>
+            </EmptyContent>
+          </Empty>
+        </CardContent>
+      </Card>
+      <SourceLink path="apps/web/components/cards/file-upload.tsx" />
+    </div>
   )
 }

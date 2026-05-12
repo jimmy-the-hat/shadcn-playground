@@ -21,6 +21,8 @@ import {
   type ChartConfig,
 } from "@workspace/ui/components/chart"
 
+import { SourceLink } from "@/components/source-link"
+
 const barChartData = [
   { month: "January", desktop: 186, mobile: 80 },
   { month: "February", desktop: 305, mobile: 200 },
@@ -50,80 +52,83 @@ const desktopDeltaPrefix = desktopDelta > 0 ? "+" : ""
 
 export function BarChartCard() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg">Traffic channels</CardTitle>
-        <CardDescription className="line-clamp-2 text-sm leading-snug">
-          Monthly desktop and mobile traffic for the last six months--compare
-          volume and mix across platforms and devices at a glance.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-4 pt-0">
-        <ChartContainer
-          config={barChartConfig}
-          className="max-h-[180px] w-full"
-        >
-          <BarChart
-            accessibilityLayer
-            data={barChartData}
-            margin={{ left: 0, right: 0, top: 8, bottom: 0 }}
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">Traffic channels</CardTitle>
+          <CardDescription className="line-clamp-2 text-sm leading-snug">
+            Monthly desktop and mobile traffic for the last six months--compare
+            volume and mix across platforms and devices at a glance.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4 pt-0">
+          <ChartContainer
+            config={barChartConfig}
+            className="max-h-[180px] w-full"
           >
-            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              tickMargin={8}
-              axisLine={false}
-              tickFormatter={(value: string) => String(value).slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
-            />
-            <ChartLegend content={<ChartLegendContent />} />
-            <Bar
-              dataKey="desktop"
-              fill="var(--color-desktop)"
-              radius={[6, 6, 0, 0]}
-            />
-            <Bar
-              dataKey="mobile"
-              fill="var(--color-mobile)"
-              radius={[6, 6, 0, 0]}
-            />
-          </BarChart>
-        </ChartContainer>
-        <div className="grid w-full grid-cols-3 divide-x divide-border/60">
-          <div className="px-2 text-center">
-            <div className="text-[0.65rem] text-muted-foreground uppercase">
-              Desktop
+            <BarChart
+              accessibilityLayer
+              data={barChartData}
+              margin={{ left: 0, right: 0, top: 8, bottom: 0 }}
+            >
+              <CartesianGrid vertical={false} strokeDasharray="3 3" />
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                tickMargin={8}
+                axisLine={false}
+                tickFormatter={(value: string) => String(value).slice(0, 3)}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="dashed" />}
+              />
+              <ChartLegend content={<ChartLegendContent />} />
+              <Bar
+                dataKey="desktop"
+                fill="var(--color-desktop)"
+                radius={[6, 6, 0, 0]}
+              />
+              <Bar
+                dataKey="mobile"
+                fill="var(--color-mobile)"
+                radius={[6, 6, 0, 0]}
+              />
+            </BarChart>
+          </ChartContainer>
+          <div className="grid w-full grid-cols-3 divide-x divide-border/60">
+            <div className="px-2 text-center">
+              <div className="text-[0.65rem] text-muted-foreground uppercase">
+                Desktop
+              </div>
+              <div className="text-sm font-medium tabular-nums">
+                {desktopTotal.toLocaleString()}
+              </div>
             </div>
-            <div className="text-sm font-medium tabular-nums">
-              {desktopTotal.toLocaleString()}
+            <div className="px-2 text-center">
+              <div className="text-[0.65rem] text-muted-foreground uppercase">
+                Mobile
+              </div>
+              <div className="text-sm font-medium tabular-nums">
+                {mobileTotal.toLocaleString()}
+              </div>
+            </div>
+            <div className="px-2 text-center">
+              <div className="text-[0.65rem] text-muted-foreground uppercase">
+                Mix Delta
+              </div>
+              <div className="text-sm font-medium tabular-nums">
+                {desktopDeltaPrefix}
+                {desktopDelta}%
+              </div>
             </div>
           </div>
-          <div className="px-2 text-center">
-            <div className="text-[0.65rem] text-muted-foreground uppercase">
-              Mobile
-            </div>
-            <div className="text-sm font-medium tabular-nums">
-              {mobileTotal.toLocaleString()}
-            </div>
-          </div>
-          <div className="px-2 text-center">
-            <div className="text-[0.65rem] text-muted-foreground uppercase">
-              Mix Delta
-            </div>
-            <div className="text-sm font-medium tabular-nums">
-              {desktopDeltaPrefix}
-              {desktopDelta}%
-            </div>
-          </div>
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button className="w-full">View report</Button>
-      </CardFooter>
-    </Card>
+        </CardContent>
+        <CardFooter>
+          <Button className="w-full">View report</Button>
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards/bar-chart-card.tsx" />
+    </div>
   )
 }

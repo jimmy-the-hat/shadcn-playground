@@ -11,26 +11,31 @@ import {
   EmptyTitle,
 } from "@workspace/ui/components/empty"
 
+import { SourceLink } from "@/components/source-link"
+
 export function EmptyExploreCatalog() {
   return (
-    <Card>
-      <CardContent>
-        <Empty className="p-4">
-          <EmptyMedia variant="icon">
-            <AudioLinesIcon />
-          </EmptyMedia>
-          <EmptyHeader>
-            <EmptyTitle>Explore Catalog</EmptyTitle>
-            <EmptyDescription>
-              Check your ISRC codes, metadata, and visual assets before going
-              live.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button>View Catalog</Button>
-          </EmptyContent>
-        </Empty>
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardContent>
+          <Empty className="p-4">
+            <EmptyMedia variant="icon">
+              <AudioLinesIcon />
+            </EmptyMedia>
+            <EmptyHeader>
+              <EmptyTitle>Explore Catalog</EmptyTitle>
+              <EmptyDescription>
+                Check your ISRC codes, metadata, and visual assets before going
+                live.
+              </EmptyDescription>
+            </EmptyHeader>
+            <EmptyContent>
+              <Button>View Catalog</Button>
+            </EmptyContent>
+          </Empty>
+        </CardContent>
+      </Card>
+      <SourceLink path="apps/web/components/cards-02/empty-explore-catalog.tsx" />
+    </div>
   )
 }

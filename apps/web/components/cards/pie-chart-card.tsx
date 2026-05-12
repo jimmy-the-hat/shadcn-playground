@@ -22,6 +22,8 @@ import {
 } from "@workspace/ui/components/chart"
 import { Progress } from "@workspace/ui/components/progress"
 
+import { SourceLink } from "@/components/source-link"
+
 const pieChartData = [
   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
   { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
@@ -67,83 +69,88 @@ export function PieChartCard() {
     "Top"
 
   return (
-    <Card>
-      <CardHeader className="pb-0">
-        <CardTitle>Browser Share</CardTitle>
-        <CardDescription>January - June 2026</CardDescription>
-        <CardAction>
-          <Badge variant="outline">{topBrowserLabel}</Badge>
-        </CardAction>
-      </CardHeader>
-      <CardContent className="pt-0">
-        <ChartContainer
-          config={pieChartConfig}
-          className="mx-auto aspect-square max-h-[190px]"
-        >
-          <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Pie
-              data={pieChartData}
-              dataKey="visitors"
-              nameKey="browser"
-              innerRadius={50}
-              strokeWidth={5}
-            >
-              <Label
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                content={(props: any) => {
-                  const vb = props.viewBox as { cx?: number; cy?: number } | undefined
-                  if (vb && "cx" in vb && "cy" in vb) {
-                    return (
-                      <text
-                        x={vb.cx}
-                        y={vb.cy}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        fill="red"
-                      >
-                        <tspan
-                          x={vb.cx}
-                          y={(vb.cy ?? 0) - 16}
-                          className="fill-foreground text-2xl font-bold"
-                        >
-                          {totalVisitors.toLocaleString()}
-                        </tspan>
-                        <tspan
-                          x={vb.cx}
-                          y={(vb.cy ?? 0) + 4}
-                          className="fill-muted-foreground text-xs"
-                        >
-                          Visitors
-                        </tspan>
-                      </text>
-                    )
-                  }
-                }}
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader className="pb-0">
+          <CardTitle>Browser Share</CardTitle>
+          <CardDescription>January - June 2026</CardDescription>
+          <CardAction>
+            <Badge variant="outline">{topBrowserLabel}</Badge>
+          </CardAction>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <ChartContainer
+            config={pieChartConfig}
+            className="mx-auto aspect-square max-h-[190px]"
+          >
+            <PieChart>
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
               />
-            </Pie>
-            <ChartLegend
-              content={<ChartLegendContent nameKey="browser" />}
-              className="translate-y-2"
-            />
-          </PieChart>
-        </ChartContainer>
-      </CardContent>
-      <CardFooter className="flex-col items-stretch gap-2">
-        <div className="flex items-center text-xs">
-          <span className="font-medium">{topBrowserLabel}</span>
-          <span className="ml-auto text-muted-foreground tabular-nums">
-            {topBrowserShare}%
-          </span>
-        </div>
-        <Progress
-          value={topBrowserShare}
-          className="**:data-[slot=progress-indicator]:bg-chart-3"
-        />
-      </CardFooter>
-    </Card>
+              <Pie
+                data={pieChartData}
+                dataKey="visitors"
+                nameKey="browser"
+                innerRadius={50}
+                strokeWidth={5}
+              >
+                <Label
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  content={(props: any) => {
+                    const vb = props.viewBox as
+                      | { cx?: number; cy?: number }
+                      | undefined
+                    if (vb && "cx" in vb && "cy" in vb) {
+                      return (
+                        <text
+                          x={vb.cx}
+                          y={vb.cy}
+                          textAnchor="middle"
+                          dominantBaseline="middle"
+                          fill="red"
+                        >
+                          <tspan
+                            x={vb.cx}
+                            y={(vb.cy ?? 0) - 16}
+                            className="fill-foreground text-2xl font-bold"
+                          >
+                            {totalVisitors.toLocaleString()}
+                          </tspan>
+                          <tspan
+                            x={vb.cx}
+                            y={(vb.cy ?? 0) + 4}
+                            className="fill-muted-foreground text-xs"
+                          >
+                            Visitors
+                          </tspan>
+                        </text>
+                      )
+                    }
+                  }}
+                />
+              </Pie>
+              <ChartLegend
+                content={<ChartLegendContent nameKey="browser" />}
+                className="translate-y-2"
+              />
+            </PieChart>
+          </ChartContainer>
+        </CardContent>
+        <CardFooter className="flex-col items-stretch gap-2">
+          <div className="flex items-center text-xs">
+            <span className="font-medium">{topBrowserLabel}</span>
+            <span className="ml-auto text-muted-foreground tabular-nums">
+              {topBrowserShare}%
+            </span>
+          </div>
+          <Progress
+            value={topBrowserShare}
+            className="**:data-[slot=progress-indicator]:bg-chart-3"
+          />
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards/pie-chart-card.tsx" />
+    </div>
   )
 }

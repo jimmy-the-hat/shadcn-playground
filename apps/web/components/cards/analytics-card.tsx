@@ -18,6 +18,8 @@ import {
   type ChartConfig,
 } from "@workspace/ui/components/chart"
 
+import { SourceLink } from "@/components/source-link"
+
 // Monthly visitor data for the area chart.
 const chartData = [
   { month: "January", visitors: 186 },
@@ -38,41 +40,44 @@ const chartConfig = {
 
 export function AnalyticsCard() {
   return (
-    <Card className="mx-auto w-full max-w-sm data-[size=sm]:pb-0" size="sm">
-      <CardHeader>
-        <CardTitle>Analytics</CardTitle>
-        <CardDescription>
-          418.2K Visitors <Badge>+10%</Badge>
-        </CardDescription>
-        <CardAction>
-          <Button variant="outline" size="sm">
-            View Analytics
-          </Button>
-        </CardAction>
-      </CardHeader>
-      <ChartContainer config={chartConfig} className="aspect-[1/0.35]">
-        <AreaChart
-          accessibilityLayer
-          data={chartData}
-          margin={{
-            left: 0,
-            right: 0,
-          }}
-        >
-          <ChartTooltip
-            cursor={false}
-            content={<ChartTooltipContent indicator="line" hideLabel />}
-            defaultIndex={2}
-          />
-          <Area
-            dataKey="visitors"
-            type="linear"
-            fill="var(--color-visitors)"
-            fillOpacity={0.4}
-            stroke="var(--color-visitors)"
-          />
-        </AreaChart>
-      </ChartContainer>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card className="mx-auto w-full max-w-sm data-[size=sm]:pb-0" size="sm">
+        <CardHeader>
+          <CardTitle>Analytics</CardTitle>
+          <CardDescription>
+            418.2K Visitors <Badge>+10%</Badge>
+          </CardDescription>
+          <CardAction>
+            <Button variant="outline" size="sm">
+              View Analytics
+            </Button>
+          </CardAction>
+        </CardHeader>
+        <ChartContainer config={chartConfig} className="aspect-[1/0.35]">
+          <AreaChart
+            accessibilityLayer
+            data={chartData}
+            margin={{
+              left: 0,
+              right: 0,
+            }}
+          >
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent indicator="line" hideLabel />}
+              defaultIndex={2}
+            />
+            <Area
+              dataKey="visitors"
+              type="linear"
+              fill="var(--color-visitors)"
+              fillOpacity={0.4}
+              stroke="var(--color-visitors)"
+            />
+          </AreaChart>
+        </ChartContainer>
+      </Card>
+      <SourceLink path="apps/web/components/cards/analytics-card.tsx" />
+    </div>
   )
 }

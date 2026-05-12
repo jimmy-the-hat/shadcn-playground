@@ -20,6 +20,8 @@ import {
   FieldLabel,
 } from "@workspace/ui/components/field"
 
+import { SourceLink } from "@/components/source-link"
+
 const NOTIFICATIONS = [
   {
     id: "transactions",
@@ -64,43 +66,46 @@ export function NotificationSettings() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Notifications</CardTitle>
-        <CardDescription>
-          Choose what you want to be notified about.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <FieldGroup>
-          <Field orientation="horizontal">
-            <Checkbox
-              id="notify-all"
-              checked={someChecked ? "indeterminate" : allChecked}
-              onCheckedChange={(v) => handleSelectAll(!!v)}
-            />
-            <FieldContent>
-              <FieldLabel htmlFor="notify-all">Select all</FieldLabel>
-            </FieldContent>
-          </Field>
-          {NOTIFICATIONS.map((n) => (
-            <Field key={n.id} orientation="horizontal">
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Notifications</CardTitle>
+          <CardDescription>
+            Choose what you want to be notified about.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <FieldGroup>
+            <Field orientation="horizontal">
               <Checkbox
-                id={`notify-${n.id}`}
-                checked={checked[n.id]}
-                onCheckedChange={(v) => handleToggle(n.id, !!v)}
+                id="notify-all"
+                checked={someChecked ? "indeterminate" : allChecked}
+                onCheckedChange={(v) => handleSelectAll(!!v)}
               />
               <FieldContent>
-                <FieldLabel htmlFor={`notify-${n.id}`}>{n.label}</FieldLabel>
-                <FieldDescription>{n.description}</FieldDescription>
+                <FieldLabel htmlFor="notify-all">Select all</FieldLabel>
               </FieldContent>
             </Field>
-          ))}
-        </FieldGroup>
-      </CardContent>
-      <CardFooter>
-        <Button className="w-full">Save Preferences</Button>
-      </CardFooter>
-    </Card>
+            {NOTIFICATIONS.map((n) => (
+              <Field key={n.id} orientation="horizontal">
+                <Checkbox
+                  id={`notify-${n.id}`}
+                  checked={checked[n.id]}
+                  onCheckedChange={(v) => handleToggle(n.id, !!v)}
+                />
+                <FieldContent>
+                  <FieldLabel htmlFor={`notify-${n.id}`}>{n.label}</FieldLabel>
+                  <FieldDescription>{n.description}</FieldDescription>
+                </FieldContent>
+              </Field>
+            ))}
+          </FieldGroup>
+        </CardContent>
+        <CardFooter>
+          <Button className="w-full">Save Preferences</Button>
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards-02/notification-settings.tsx" />
+    </div>
   )
 }
