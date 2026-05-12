@@ -15,6 +15,8 @@ import {
   ItemTitle,
 } from "@workspace/ui/components/item"
 
+import { SourceLink } from "@/components/source-link"
+
 // Usage items with percentage and value.
 const items = [
   {
@@ -99,38 +101,41 @@ function CircularGauge({ percentage }: { percentage: number }) {
 
 export function UsageCard() {
   return (
-    <Card className="w-full max-w-sm gap-4">
-      <CardHeader>
-        <CardTitle className="px-1 text-sm">
-          5 days remaining in cycle
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <ItemGroup className="gap-0">
-          {items.map((item) => (
-            <Item
-              key={item.name}
-              size="xs"
-              className="px-0 group-hover/item-group:bg-transparent"
-              asChild
-            >
-              <a href="#">
-                <ItemMedia variant="icon" className="text-primary">
-                  <CircularGauge percentage={item.percentage} />
-                </ItemMedia>
-                <ItemContent className="inline-block truncate">
-                  <ItemTitle className="inline">{item.name}</ItemTitle>
-                </ItemContent>
-                <ItemActions>
-                  <span className="font-mono text-xs font-medium text-muted-foreground tabular-nums">
-                    {item.value}
-                  </span>
-                </ItemActions>
-              </a>
-            </Item>
-          ))}
-        </ItemGroup>
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card className="w-full max-w-sm gap-4">
+        <CardHeader>
+          <CardTitle className="px-1 text-sm">
+            5 days remaining in cycle
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ItemGroup className="gap-0">
+            {items.map((item) => (
+              <Item
+                key={item.name}
+                size="xs"
+                className="px-0 group-hover/item-group:bg-transparent"
+                asChild
+              >
+                <a href="#">
+                  <ItemMedia variant="icon" className="text-primary">
+                    <CircularGauge percentage={item.percentage} />
+                  </ItemMedia>
+                  <ItemContent className="inline-block truncate">
+                    <ItemTitle className="inline">{item.name}</ItemTitle>
+                  </ItemContent>
+                  <ItemActions>
+                    <span className="font-mono text-xs font-medium text-muted-foreground tabular-nums">
+                      {item.value}
+                    </span>
+                  </ItemActions>
+                </a>
+              </Item>
+            ))}
+          </ItemGroup>
+        </CardContent>
+      </Card>
+      <SourceLink path="apps/web/components/cards/usage-card.tsx" />
+    </div>
   )
 }

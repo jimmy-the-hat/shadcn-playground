@@ -16,6 +16,8 @@ import {
   ToggleGroupItem,
 } from "@workspace/ui/components/toggle-group"
 
+import { SourceLink } from "@/components/source-link"
+
 export function RollerShades() {
   const [position, setPosition] = React.useState([50])
 
@@ -23,57 +25,60 @@ export function RollerShades() {
     position[0]! <= 10 ? "open" : position[0]! >= 90 ? "closed" : "half"
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Living Room</CardTitle>
-        <CardDescription>Roller Shades</CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        <div className="flex h-32 flex-col overflow-hidden rounded-lg border bg-muted">
-          <div
-            className="bg-muted-foreground transition-all duration-300"
-            style={{ height: `${position[0]}%` }}
-          />
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
-            Open
-          </span>
-          <Slider
-            value={position}
-            onValueChange={setPosition}
-            max={100}
-            className="flex-1"
-          />
-          <span className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
-            Close
-          </span>
-        </div>
-      </CardContent>
-      <CardFooter>
-        <ToggleGroup
-          type="single"
-          value={preset}
-          onValueChange={(value) => {
-            if (value === "open") setPosition([0])
-            if (value === "half") setPosition([50])
-            if (value === "closed") setPosition([100])
-          }}
-          variant="outline"
-          spacing={1}
-          className="w-full"
-        >
-          <ToggleGroupItem value="open" className="flex-1">
-            Open
-          </ToggleGroupItem>
-          <ToggleGroupItem value="half" className="flex-1">
-            Half
-          </ToggleGroupItem>
-          <ToggleGroupItem value="closed" className="flex-1">
-            Closed
-          </ToggleGroupItem>
-        </ToggleGroup>
-      </CardFooter>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Living Room</CardTitle>
+          <CardDescription>Roller Shades</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <div className="flex h-32 flex-col overflow-hidden rounded-lg border bg-muted">
+            <div
+              className="bg-muted-foreground transition-all duration-300"
+              style={{ height: `${position[0]}%` }}
+            />
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
+              Open
+            </span>
+            <Slider
+              value={position}
+              onValueChange={setPosition}
+              max={100}
+              className="flex-1"
+            />
+            <span className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
+              Close
+            </span>
+          </div>
+        </CardContent>
+        <CardFooter>
+          <ToggleGroup
+            type="single"
+            value={preset}
+            onValueChange={(value) => {
+              if (value === "open") setPosition([0])
+              if (value === "half") setPosition([50])
+              if (value === "closed") setPosition([100])
+            }}
+            variant="outline"
+            spacing={1}
+            className="w-full"
+          >
+            <ToggleGroupItem value="open" className="flex-1">
+              Open
+            </ToggleGroupItem>
+            <ToggleGroupItem value="half" className="flex-1">
+              Half
+            </ToggleGroupItem>
+            <ToggleGroupItem value="closed" className="flex-1">
+              Closed
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards-02/roller-shades.tsx" />
+    </div>
   )
 }

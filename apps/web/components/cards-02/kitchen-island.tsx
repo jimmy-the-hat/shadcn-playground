@@ -26,6 +26,8 @@ import {
   ToggleGroupItem,
 } from "@workspace/ui/components/toggle-group"
 
+import { SourceLink } from "@/components/source-link"
+
 const SCENES = {
   cooking: { brightness: [90], colorTemp: [70], volume: [30], fade: [0] },
   dining: { brightness: [50], colorTemp: [40], volume: [20], fade: [60] },
@@ -52,107 +54,110 @@ export function KitchenIsland() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Kitchen Island</CardTitle>
-        <CardDescription>Hue Color Ambient</CardDescription>
-        <CardAction>
-          <Switch checked={enabled} onCheckedChange={setEnabled} />
-        </CardAction>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <span className="sr-only">Scenes</span>
-          <ToggleGroup
-            type="single"
-            value={scene}
-            onValueChange={handleSceneChange}
-            variant="outline"
-            spacing={1}
-            className="flex-wrap"
-          >
-            <ToggleGroupItem value="cooking" disabled={!enabled}>
-              Cooking
-            </ToggleGroupItem>
-            <ToggleGroupItem value="dining" disabled={!enabled}>
-              Dining
-            </ToggleGroupItem>
-            <ToggleGroupItem value="nightlight" disabled={!enabled}>
-              Nightlight
-            </ToggleGroupItem>
-            <ToggleGroupItem value="focus" disabled={!enabled}>
-              Focus
-            </ToggleGroupItem>
-          </ToggleGroup>
-        </div>
-        <ItemGroup>
-          <Item size="sm" variant="outline">
-            <ItemMedia variant="icon">
-              <SunIcon />
-            </ItemMedia>
-            <ItemContent className="flex-row items-center gap-3">
-              <ItemTitle className="shrink-0">Brightness</ItemTitle>
-            </ItemContent>
-            <ItemActions className="flex-1">
-              <Slider
-                value={brightness}
-                onValueChange={setBrightness}
-                max={100}
-                disabled={!enabled}
-                className="w-full"
-              />
-            </ItemActions>
-          </Item>
-          <Item size="sm" variant="outline">
-            <ItemMedia variant="icon">
-              <ThermometerIcon />
-            </ItemMedia>
-            <ItemContent className="flex-row items-center gap-3">
-              <ItemTitle className="shrink-0">Color Temp</ItemTitle>
-            </ItemContent>
-            <ItemActions className="flex-1">
-              <Slider
-                value={colorTemp}
-                onValueChange={setColorTemp}
-                max={100}
-                disabled={!enabled}
-              />
-            </ItemActions>
-          </Item>
-          <Item size="sm" variant="outline">
-            <ItemMedia variant="icon">
-              <Volume2Icon />
-            </ItemMedia>
-            <ItemContent className="flex-row items-center gap-3">
-              <ItemTitle className="shrink-0">Volume</ItemTitle>
-            </ItemContent>
-            <ItemActions className="flex-1">
-              <Slider
-                value={volume}
-                onValueChange={setVolume}
-                max={100}
-                disabled={!enabled}
-              />
-            </ItemActions>
-          </Item>
-          <Item size="sm" variant="outline">
-            <ItemMedia variant="icon">
-              <TimerIcon />
-            </ItemMedia>
-            <ItemContent className="flex-row items-center gap-3">
-              <ItemTitle className="shrink-0">Fade</ItemTitle>
-            </ItemContent>
-            <ItemActions className="flex-1">
-              <Slider
-                value={fade}
-                onValueChange={setFade}
-                max={100}
-                disabled={!enabled}
-              />
-            </ItemActions>
-          </Item>
-        </ItemGroup>
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Kitchen Island</CardTitle>
+          <CardDescription>Hue Color Ambient</CardDescription>
+          <CardAction>
+            <Switch checked={enabled} onCheckedChange={setEnabled} />
+          </CardAction>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <span className="sr-only">Scenes</span>
+            <ToggleGroup
+              type="single"
+              value={scene}
+              onValueChange={handleSceneChange}
+              variant="outline"
+              spacing={1}
+              className="flex-wrap"
+            >
+              <ToggleGroupItem value="cooking" disabled={!enabled}>
+                Cooking
+              </ToggleGroupItem>
+              <ToggleGroupItem value="dining" disabled={!enabled}>
+                Dining
+              </ToggleGroupItem>
+              <ToggleGroupItem value="nightlight" disabled={!enabled}>
+                Nightlight
+              </ToggleGroupItem>
+              <ToggleGroupItem value="focus" disabled={!enabled}>
+                Focus
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+          <ItemGroup>
+            <Item size="sm" variant="outline">
+              <ItemMedia variant="icon">
+                <SunIcon />
+              </ItemMedia>
+              <ItemContent className="flex-row items-center gap-3">
+                <ItemTitle className="shrink-0">Brightness</ItemTitle>
+              </ItemContent>
+              <ItemActions className="flex-1">
+                <Slider
+                  value={brightness}
+                  onValueChange={setBrightness}
+                  max={100}
+                  disabled={!enabled}
+                  className="w-full"
+                />
+              </ItemActions>
+            </Item>
+            <Item size="sm" variant="outline">
+              <ItemMedia variant="icon">
+                <ThermometerIcon />
+              </ItemMedia>
+              <ItemContent className="flex-row items-center gap-3">
+                <ItemTitle className="shrink-0">Color Temp</ItemTitle>
+              </ItemContent>
+              <ItemActions className="flex-1">
+                <Slider
+                  value={colorTemp}
+                  onValueChange={setColorTemp}
+                  max={100}
+                  disabled={!enabled}
+                />
+              </ItemActions>
+            </Item>
+            <Item size="sm" variant="outline">
+              <ItemMedia variant="icon">
+                <Volume2Icon />
+              </ItemMedia>
+              <ItemContent className="flex-row items-center gap-3">
+                <ItemTitle className="shrink-0">Volume</ItemTitle>
+              </ItemContent>
+              <ItemActions className="flex-1">
+                <Slider
+                  value={volume}
+                  onValueChange={setVolume}
+                  max={100}
+                  disabled={!enabled}
+                />
+              </ItemActions>
+            </Item>
+            <Item size="sm" variant="outline">
+              <ItemMedia variant="icon">
+                <TimerIcon />
+              </ItemMedia>
+              <ItemContent className="flex-row items-center gap-3">
+                <ItemTitle className="shrink-0">Fade</ItemTitle>
+              </ItemContent>
+              <ItemActions className="flex-1">
+                <Slider
+                  value={fade}
+                  onValueChange={setFade}
+                  max={100}
+                  disabled={!enabled}
+                />
+              </ItemActions>
+            </Item>
+          </ItemGroup>
+        </CardContent>
+      </Card>
+      <SourceLink path="apps/web/components/cards-02/kitchen-island.tsx" />
+    </div>
   )
 }

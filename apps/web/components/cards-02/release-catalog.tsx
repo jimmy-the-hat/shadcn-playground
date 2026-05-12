@@ -22,6 +22,8 @@ import {
   ToggleGroupItem,
 } from "@workspace/ui/components/toggle-group"
 
+import { SourceLink } from "@/components/source-link"
+
 const HOLDINGS = [
   {
     ticker: "VOO",
@@ -59,57 +61,60 @@ const HOLDINGS = [
 
 export function ReleaseCatalog() {
   return (
-    <Card>
-      <CardHeader>
-        <div className="flex items-center justify-between gap-3">
-          <InputGroup className="max-w-sm">
-            <InputGroupAddon>
-              <SearchIcon />
-            </InputGroupAddon>
-            <InputGroupInput placeholder="Search holdings or tickers..." />
-          </InputGroup>
-          <ToggleGroup
-            type="single"
-            defaultValue="etfs"
-            variant="outline"
-            spacing={1}
-          >
-            <ToggleGroupItem value="stocks">Stocks</ToggleGroupItem>
-            <ToggleGroupItem value="etfs">ETFs</ToggleGroupItem>
-            <ToggleGroupItem value="reits">REITs</ToggleGroupItem>
-          </ToggleGroup>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <ItemGroup>
-          {HOLDINGS.map((holding) => (
-            <Item key={holding.ticker} variant="muted">
-              <ItemMedia>
-                <div className="flex size-12 items-center justify-center rounded-lg border text-sm font-semibold">
-                  {holding.ticker}
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between gap-3">
+            <InputGroup className="max-w-sm">
+              <InputGroupAddon>
+                <SearchIcon />
+              </InputGroupAddon>
+              <InputGroupInput placeholder="Search holdings or tickers..." />
+            </InputGroup>
+            <ToggleGroup
+              type="single"
+              defaultValue="etfs"
+              variant="outline"
+              spacing={1}
+            >
+              <ToggleGroupItem value="stocks">Stocks</ToggleGroupItem>
+              <ToggleGroupItem value="etfs">ETFs</ToggleGroupItem>
+              <ToggleGroupItem value="reits">REITs</ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <ItemGroup>
+            {HOLDINGS.map((holding) => (
+              <Item key={holding.ticker} variant="muted">
+                <ItemMedia>
+                  <div className="flex size-12 items-center justify-center rounded-lg border text-sm font-semibold">
+                    {holding.ticker}
+                  </div>
+                </ItemMedia>
+                <ItemContent>
+                  <ItemTitle>{holding.name}</ItemTitle>
+                  <ItemDescription className="text-xs tracking-wider uppercase">
+                    {holding.shares} Shares · {holding.added}
+                  </ItemDescription>
+                </ItemContent>
+                <div className="flex shrink-0 items-center gap-6">
+                  <Badge variant="outline">{holding.type}</Badge>
+                  <div className="flex flex-col items-end gap-0.5">
+                    <span className="text-xs tracking-wider text-muted-foreground uppercase">
+                      Value
+                    </span>
+                    <span className="font-medium tabular-nums">
+                      {holding.value}
+                    </span>
+                  </div>
                 </div>
-              </ItemMedia>
-              <ItemContent>
-                <ItemTitle>{holding.name}</ItemTitle>
-                <ItemDescription className="text-xs tracking-wider uppercase">
-                  {holding.shares} Shares · {holding.added}
-                </ItemDescription>
-              </ItemContent>
-              <div className="flex shrink-0 items-center gap-6">
-                <Badge variant="outline">{holding.type}</Badge>
-                <div className="flex flex-col items-end gap-0.5">
-                  <span className="text-xs tracking-wider text-muted-foreground uppercase">
-                    Value
-                  </span>
-                  <span className="font-medium tabular-nums">
-                    {holding.value}
-                  </span>
-                </div>
-              </div>
-            </Item>
-          ))}
-        </ItemGroup>
-      </CardContent>
-    </Card>
+              </Item>
+            ))}
+          </ItemGroup>
+        </CardContent>
+      </Card>
+      <SourceLink path="apps/web/components/cards-02/release-catalog.tsx" />
+    </div>
   )
 }

@@ -14,6 +14,8 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card"
 
+import { SourceLink } from "@/components/source-link"
+
 const LiveWaveform = ({
   active = false,
   processing = false,
@@ -508,49 +510,52 @@ export function LiveWaveformCard() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Live Audio Waveform</CardTitle>
-        <CardDescription>
-          Real-time microphone input visualization with audio reactivity
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <LiveWaveform
-          active={active}
-          processing={processing}
-          height={80}
-          barWidth={3}
-          barGap={2}
-          mode={mode}
-          fadeEdges={true}
-          barColor="gray"
-          historySize={120}
-        />
-      </CardContent>
-      <CardFooter className="gap-2">
-        <Button
-          size="sm"
-          variant={active ? "default" : "outline"}
-          onClick={handleToggleActive}
-        >
-          {active ? "Stop" : "Start"} Listening
-        </Button>
-        <Button
-          size="sm"
-          variant={processing ? "default" : "outline"}
-          onClick={handleToggleProcessing}
-        >
-          {processing ? "Stop" : "Start"} Processing
-        </Button>
-        <Button
-          size="sm"
-          variant="outline"
-          onClick={() => setMode(mode === "static" ? "scrolling" : "static")}
-        >
-          {mode === "static" ? "Static" : "Scrolling"}
-        </Button>
-      </CardFooter>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Live Audio Waveform</CardTitle>
+          <CardDescription>
+            Real-time microphone input visualization with audio reactivity
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <LiveWaveform
+            active={active}
+            processing={processing}
+            height={80}
+            barWidth={3}
+            barGap={2}
+            mode={mode}
+            fadeEdges={true}
+            barColor="gray"
+            historySize={120}
+          />
+        </CardContent>
+        <CardFooter className="gap-2">
+          <Button
+            size="sm"
+            variant={active ? "default" : "outline"}
+            onClick={handleToggleActive}
+          >
+            {active ? "Stop" : "Start"} Listening
+          </Button>
+          <Button
+            size="sm"
+            variant={processing ? "default" : "outline"}
+            onClick={handleToggleProcessing}
+          >
+            {processing ? "Stop" : "Start"} Processing
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => setMode(mode === "static" ? "scrolling" : "static")}
+          >
+            {mode === "static" ? "Static" : "Scrolling"}
+          </Button>
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards/live-waveform.tsx" />
+    </div>
   )
 }

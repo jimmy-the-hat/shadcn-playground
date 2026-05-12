@@ -11,26 +11,31 @@ import {
   EmptyTitle,
 } from "@workspace/ui/components/empty"
 
+import { SourceLink } from "@/components/source-link"
+
 export function EmptyDistributeTrack() {
   return (
-    <Card>
-      <CardContent>
-        <Empty className="p-4">
-          <EmptyMedia variant="icon">
-            <PlusIcon />
-          </EmptyMedia>
-          <EmptyHeader>
-            <EmptyTitle>Distribute Track</EmptyTitle>
-            <EmptyDescription>
-              Upload your first master to start reaching listeners on Spotify,
-              Apple Music, and more.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button>Create Release</Button>
-          </EmptyContent>
-        </Empty>
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardContent>
+          <Empty className="p-4">
+            <EmptyMedia variant="icon">
+              <PlusIcon />
+            </EmptyMedia>
+            <EmptyHeader>
+              <EmptyTitle>Distribute Track</EmptyTitle>
+              <EmptyDescription>
+                Upload your first master to start reaching listeners on Spotify,
+                Apple Music, and more.
+              </EmptyDescription>
+            </EmptyHeader>
+            <EmptyContent>
+              <Button>Create Release</Button>
+            </EmptyContent>
+          </Empty>
+        </CardContent>
+      </Card>
+      <SourceLink path="apps/web/components/cards-02/empty-distribute-track.tsx" />
+    </div>
   )
 }

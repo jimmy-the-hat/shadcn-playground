@@ -20,6 +20,8 @@ import {
 } from "@workspace/ui/components/item"
 import { CheckCircle2Icon } from "lucide-react"
 
+import { SourceLink } from "@/components/source-link"
+
 // Agent feature descriptions.
 const agentFeatures = [
   {
@@ -56,43 +58,44 @@ const agentFeatures = [
 
 export function ActivateAgentDialog() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Ship faster & safer with Vercel Agent</CardTitle>
-        <CardDescription>
-          Your use is subject to Vercel&apos;s{" "}
-          <a href="#">Public Beta Agreement</a> and{" "}
-          <a href="#">AI Product Terms</a>.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        <ItemGroup className="gap-0">
-          {agentFeatures.map((feature) => (
-            <Item key={feature.id} size="xs" className="px-0">
-              <ItemMedia variant="icon" className="self-start">
-                <CheckCircle2Icon
-                  className="size-5 fill-primary text-primary-foreground"
-                />
-              </ItemMedia>
-              <ItemContent>
-                <ItemTitle className="inline leading-relaxed font-normal text-muted-foreground *:[strong]:font-medium *:[strong]:text-foreground">
-                  {feature.content}
-                </ItemTitle>
-              </ItemContent>
-            </Item>
-          ))}
-        </ItemGroup>
-        <Alert>
-          <AlertDescription>
-            Pro teams get $100 in Vercel Agent trial credit for 2 weeks after
-            activation.
-          </AlertDescription>
-        </Alert>
-      </CardContent>
-      <CardFooter className="justify-end gap-2">
-        <Button variant="outline">Cancel</Button>
-        <Button>Enable with $100 credits</Button>
-      </CardFooter>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Ship faster & safer with Vercel Agent</CardTitle>
+          <CardDescription>
+            Your use is subject to Vercel&apos;s{" "}
+            <a href="#">Public Beta Agreement</a> and{" "}
+            <a href="#">AI Product Terms</a>.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <ItemGroup className="gap-0">
+            {agentFeatures.map((feature) => (
+              <Item key={feature.id} size="xs" className="px-0">
+                <ItemMedia variant="icon" className="self-start">
+                  <CheckCircle2Icon className="size-5 fill-primary text-primary-foreground" />
+                </ItemMedia>
+                <ItemContent>
+                  <ItemTitle className="inline leading-relaxed font-normal text-muted-foreground *:[strong]:font-medium *:[strong]:text-foreground">
+                    {feature.content}
+                  </ItemTitle>
+                </ItemContent>
+              </Item>
+            ))}
+          </ItemGroup>
+          <Alert>
+            <AlertDescription>
+              Pro teams get $100 in Vercel Agent trial credit for 2 weeks after
+              activation.
+            </AlertDescription>
+          </Alert>
+        </CardContent>
+        <CardFooter className="justify-end gap-2">
+          <Button variant="outline">Cancel</Button>
+          <Button>Enable with $100 credits</Button>
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards/activate-agent-dialog.tsx" />
+    </div>
   )
 }

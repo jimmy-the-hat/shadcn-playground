@@ -27,6 +27,8 @@ import {
 import { Field, FieldGroup, FieldLabel } from "@workspace/ui/components/field"
 import { Separator } from "@workspace/ui/components/separator"
 
+import { SourceLink } from "@/components/source-link"
+
 const TICKERS = ["VOO", "VIG", "AAPL", "MSFT", "GOOGL", "AMZN", "TSLA"]
 
 const CHART_DATA: Record<string, { month: string; price: number }[]> = {
@@ -70,75 +72,78 @@ export function StockPerformance() {
   const data = CHART_DATA[ticker] ?? DEFAULT_DATA
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Stock Performance</CardTitle>
-        <CardDescription>6-month price history.</CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        <FieldGroup>
-          <Field>
-            <FieldLabel htmlFor="ticker-select">Ticker</FieldLabel>
-            <Combobox
-              items={TICKERS}
-              value={ticker}
-              onValueChange={(value) => {
-                if (value !== null) setTicker(value)
-              }}
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Stock Performance</CardTitle>
+          <CardDescription>6-month price history.</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <FieldGroup>
+            <Field>
+              <FieldLabel htmlFor="ticker-select">Ticker</FieldLabel>
+              <Combobox
+                items={TICKERS}
+                value={ticker}
+                onValueChange={(value) => {
+                  if (value !== null) setTicker(value)
+                }}
+              >
+                <ComboboxInput
+                  id="ticker-select"
+                  placeholder="Search ticker..."
+                />
+                <ComboboxContent>
+                  <ComboboxEmpty>No tickers found.</ComboboxEmpty>
+                  <ComboboxList>
+                    {(item) => (
+                      <ComboboxItem key={item} value={item}>
+                        {item}
+                      </ComboboxItem>
+                    )}
+                  </ComboboxList>
+                </ComboboxContent>
+              </Combobox>
+            </Field>
+          </FieldGroup>
+          <Separator />
+          <ChartContainer config={chartConfig} className="h-[200px] w-full">
+            <AreaChart
+              accessibilityLayer
+              data={data}
+              margin={{ left: 0, right: 0, top: 8, bottom: 0 }}
             >
-              <ComboboxInput
-                id="ticker-select"
-                placeholder="Search ticker..."
+              <defs>
+                <linearGradient id="fillPrice" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="0%"
+                    stopColor="var(--color-price)"
+                    stopOpacity={0.3}
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="var(--color-price)"
+                    stopOpacity={0.05}
+                  />
+                </linearGradient>
+              </defs>
+              <CartesianGrid vertical={false} strokeDasharray="3 3" />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
               />
-              <ComboboxContent>
-                <ComboboxEmpty>No tickers found.</ComboboxEmpty>
-                <ComboboxList>
-                  {(item) => (
-                    <ComboboxItem key={item} value={item}>
-                      {item}
-                    </ComboboxItem>
-                  )}
-                </ComboboxList>
-              </ComboboxContent>
-            </Combobox>
-          </Field>
-        </FieldGroup>
-        <Separator />
-        <ChartContainer config={chartConfig} className="h-[200px] w-full">
-          <AreaChart
-            accessibilityLayer
-            data={data}
-            margin={{ left: 0, right: 0, top: 8, bottom: 0 }}
-          >
-            <defs>
-              <linearGradient id="fillPrice" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="0%"
-                  stopColor="var(--color-price)"
-                  stopOpacity={0.3}
-                />
-                <stop
-                  offset="100%"
-                  stopColor="var(--color-price)"
-                  stopOpacity={0.05}
-                />
-              </linearGradient>
-            </defs>
-            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Area
-              type="monotone"
-              dataKey="price"
-              stroke="var(--color-price)"
-              strokeWidth={2}
-              fill="url(#fillPrice)"
-            />
-          </AreaChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
+              <Area
+                type="monotone"
+                dataKey="price"
+                stroke="var(--color-price)"
+                strokeWidth={2}
+                fill="url(#fillPrice)"
+              />
+            </AreaChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
+      <SourceLink path="apps/web/components/cards-02/stock-performance.tsx" />
+    </div>
   )
 }

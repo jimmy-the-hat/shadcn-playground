@@ -18,6 +18,8 @@ import {
   type ChartConfig,
 } from "@workspace/ui/components/chart"
 
+import { SourceLink } from "@/components/source-link"
+
 const areaChartData = [
   { month: "January", desktop: 186 },
   { month: "February", desktop: 305 },
@@ -45,47 +47,50 @@ const trendPrefix = trendPercent > 0 ? "+" : ""
 
 export function Visitors() {
   return (
-    <Card className="pb-0">
-      <CardHeader>
-        <CardTitle>Visitors</CardTitle>
-        <CardDescription>Last 6 months </CardDescription>
-        <CardAction>
-          <Badge variant={trendPercent >= 0 ? "secondary" : "destructive"}>
-            {trendPrefix}
-            {trendPercent}% vs last month
-          </Badge>
-        </CardAction>
-      </CardHeader>
-      <CardContent className="px-0">
-        <ChartContainer config={areaChartConfig} className="h-48 w-full">
-          <AreaChart
-            accessibilityLayer
-            data={areaChartData}
-            margin={{ left: 0, right: 0, top: 6, bottom: 0 }}
-          >
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              hide
-              axisLine={false}
-              tickMargin={6}
-              tickFormatter={(value: string) => String(value).slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
-            />
-            <Area
-              dataKey="desktop"
-              type="natural"
-              fill="var(--color-desktop)"
-              fillOpacity={0.15}
-              stroke="var(--color-desktop)"
-              strokeWidth={2}
-            />
-          </AreaChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card className="pb-0">
+        <CardHeader>
+          <CardTitle>Visitors</CardTitle>
+          <CardDescription>Last 6 months </CardDescription>
+          <CardAction>
+            <Badge variant={trendPercent >= 0 ? "secondary" : "destructive"}>
+              {trendPrefix}
+              {trendPercent}% vs last month
+            </Badge>
+          </CardAction>
+        </CardHeader>
+        <CardContent className="px-0">
+          <ChartContainer config={areaChartConfig} className="h-48 w-full">
+            <AreaChart
+              accessibilityLayer
+              data={areaChartData}
+              margin={{ left: 0, right: 0, top: 6, bottom: 0 }}
+            >
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                hide
+                axisLine={false}
+                tickMargin={6}
+                tickFormatter={(value: string) => String(value).slice(0, 3)}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="line" />}
+              />
+              <Area
+                dataKey="desktop"
+                type="natural"
+                fill="var(--color-desktop)"
+                fillOpacity={0.15}
+                stroke="var(--color-desktop)"
+                strokeWidth={2}
+              />
+            </AreaChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
+      <SourceLink path="apps/web/components/cards/visitors.tsx" />
+    </div>
   )
 }

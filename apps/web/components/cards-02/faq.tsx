@@ -7,17 +7,15 @@ import {
   AccordionTrigger,
 } from "@workspace/ui/components/accordion"
 import { Button } from "@workspace/ui/components/button"
-import {
-  Card,
-  CardContent,
-  CardFooter,
-} from "@workspace/ui/components/card"
+import { Card, CardContent, CardFooter } from "@workspace/ui/components/card"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@workspace/ui/components/tabs"
+
+import { SourceLink } from "@/components/source-link"
 
 const GENERAL_QUESTIONS = [
   {
@@ -83,39 +81,42 @@ function QuestionList({
 
 export function Faq() {
   return (
-    <Card>
-      <CardContent>
-        <Tabs defaultValue="general">
-          <TabsList className="w-full">
-            <TabsTrigger value="general" className="flex-1">
-              General
-            </TabsTrigger>
-            <TabsTrigger value="billing" className="flex-1">
-              Billing
-            </TabsTrigger>
-            <TabsTrigger value="goals" className="flex-1">
-              Goals
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value="general">
-            <QuestionList questions={GENERAL_QUESTIONS} />
-          </TabsContent>
-          <TabsContent value="billing">
-            <QuestionList questions={BILLING_QUESTIONS} />
-          </TabsContent>
-          <TabsContent value="goals">
-            <QuestionList questions={GOALS_QUESTIONS} />
-          </TabsContent>
-        </Tabs>
-      </CardContent>
-      <CardFooter>
-        <Button variant="outline" className="w-full">
-          Contact Support
-        </Button>
-        <Button variant="link" className="w-full">
-          Learn More
-        </Button>
-      </CardFooter>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardContent>
+          <Tabs defaultValue="general">
+            <TabsList className="w-full">
+              <TabsTrigger value="general" className="flex-1">
+                General
+              </TabsTrigger>
+              <TabsTrigger value="billing" className="flex-1">
+                Billing
+              </TabsTrigger>
+              <TabsTrigger value="goals" className="flex-1">
+                Goals
+              </TabsTrigger>
+            </TabsList>
+            <TabsContent value="general">
+              <QuestionList questions={GENERAL_QUESTIONS} />
+            </TabsContent>
+            <TabsContent value="billing">
+              <QuestionList questions={BILLING_QUESTIONS} />
+            </TabsContent>
+            <TabsContent value="goals">
+              <QuestionList questions={GOALS_QUESTIONS} />
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+        <CardFooter>
+          <Button variant="outline" className="w-full">
+            Contact Support
+          </Button>
+          <Button variant="link" className="w-full">
+            Learn More
+          </Button>
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards-02/faq.tsx" />
+    </div>
   )
 }

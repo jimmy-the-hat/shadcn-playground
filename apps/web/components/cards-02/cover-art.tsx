@@ -10,43 +10,48 @@ import {
 import { Item } from "@workspace/ui/components/item"
 import { Label } from "@workspace/ui/components/label"
 
+import { SourceLink } from "@/components/source-link"
+
 export function CoverArt() {
   return (
-    <Card>
-      <CardContent className="flex flex-col gap-3">
-        <Label
-          htmlFor="cover-art"
-          className="text-center text-xs font-normal tracking-wider text-muted-foreground uppercase"
-        >
-          Cover Art
-        </Label>
-        <Item className="aspect-square" variant="outline">
-          <label
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardContent className="flex flex-col gap-3">
+          <Label
             htmlFor="cover-art"
-            className="flex size-full cursor-pointer items-center justify-center"
+            className="text-center text-xs font-normal tracking-wider text-muted-foreground uppercase"
           >
-            <ImageIcon className="size-10 text-muted-foreground/50" />
-          </label>
-        </Item>
-        <input
-          id="cover-art"
-          type="file"
-          accept="image/jpeg,image/png"
-          className="sr-only"
-        />
-      </CardContent>
-      <CardFooter className="flex-col gap-2">
-        <Button variant="secondary" className="w-full" asChild>
-          <label htmlFor="cover-art" className="cursor-pointer">
-            Upload Artwork
-          </label>
-        </Button>
-        <CardDescription className="text-center text-xs">
-          Minimum 3000 x 3000px
-          <br />
-          JPEG or PNG only
-        </CardDescription>
-      </CardFooter>
-    </Card>
+            Cover Art
+          </Label>
+          <Item className="aspect-square" variant="outline">
+            <label
+              htmlFor="cover-art"
+              className="flex size-full cursor-pointer items-center justify-center"
+            >
+              <ImageIcon className="size-10 text-muted-foreground/50" />
+            </label>
+          </Item>
+          <input
+            id="cover-art"
+            type="file"
+            accept="image/jpeg,image/png"
+            className="sr-only"
+          />
+        </CardContent>
+        <CardFooter className="flex-col gap-2">
+          <Button variant="secondary" className="w-full" asChild>
+            <label htmlFor="cover-art" className="cursor-pointer">
+              Upload Artwork
+            </label>
+          </Button>
+          <CardDescription className="text-center text-xs">
+            Minimum 3000 x 3000px
+            <br />
+            JPEG or PNG only
+          </CardDescription>
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards-02/cover-art.tsx" />
+    </div>
   )
 }

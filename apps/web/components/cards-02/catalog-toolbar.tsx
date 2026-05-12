@@ -13,9 +13,11 @@ import {
   ToggleGroupItem,
 } from "@workspace/ui/components/toggle-group"
 
+import { SourceLink } from "@/components/source-link"
+
 export function CatalogToolbar() {
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <div className="flex items-center gap-3">
         <InputGroup className="flex-1">
           <InputGroupAddon>
@@ -33,6 +35,7 @@ export function CatalogToolbar() {
         <ToggleGroupItem value="releases">Releases</ToggleGroupItem>
         <ToggleGroupItem value="top-earners">Top Earners</ToggleGroupItem>
       </ToggleGroup>
-    </>
+      <SourceLink path="apps/web/components/cards-02/catalog-toolbar.tsx" />
+    </div>
   )
 }

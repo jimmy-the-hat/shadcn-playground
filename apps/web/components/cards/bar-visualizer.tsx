@@ -14,6 +14,8 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card"
 
+import { SourceLink } from "@/components/source-link"
+
 type AgentState =
   | "connecting"
   | "initializing"
@@ -58,9 +60,11 @@ function createAudioAnalyser(
   mediaStream: MediaStream,
   options: AudioAnalyserOptions = {}
 ) {
-  const audioContext = new (window.AudioContext ||
+  const audioContext = new (
+    window.AudioContext ||
     (window as unknown as { webkitAudioContext: typeof AudioContext })
-      .webkitAudioContext)()
+      .webkitAudioContext
+  )()
   const source = audioContext.createMediaStreamSource(mediaStream)
   const analyser = audioContext.createAnalyser()
 
@@ -334,7 +338,9 @@ const BarVisualizerComponent = React.forwardRef<
 
           let hasChanged = false
           for (let i = 0; i < barCount; i++) {
-            if (Math.abs(newBands[i]! - fakeVolumeBandsRef.current[i]!) > 0.05) {
+            if (
+              Math.abs(newBands[i]! - fakeVolumeBandsRef.current[i]!) > 0.05
+            ) {
               hasChanged = true
               break
             }
@@ -438,46 +444,50 @@ export function BarVisualizerCard() {
   const [state, setState] = useState<AgentState>("speaking")
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Audio Frequency Visualizer</CardTitle>
-        <CardDescription>
-          Real-time frequency band visualization with animated state transitions
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <BarVisualizer
-          state={state}
-          demo={true}
-          barCount={20}
-          minHeight={15}
-          maxHeight={90}
-          className="h-40 max-w-full"
-        />
-      </CardContent>
-      <CardFooter className="gap-2">
-        <Button
-          size="sm"
-          variant={state === "connecting" ? "default" : "outline"}
-          onClick={() => setState("connecting")}
-        >
-          Connecting
-        </Button>
-        <Button
-          size="sm"
-          variant={state === "listening" ? "default" : "outline"}
-          onClick={() => setState("listening")}
-        >
-          Listening
-        </Button>
-        <Button
-          size="sm"
-          variant={state === "speaking" ? "default" : "outline"}
-          onClick={() => setState("speaking")}
-        >
-          Speaking
-        </Button>
-      </CardFooter>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Audio Frequency Visualizer</CardTitle>
+          <CardDescription>
+            Real-time frequency band visualization with animated state
+            transitions
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <BarVisualizer
+            state={state}
+            demo={true}
+            barCount={20}
+            minHeight={15}
+            maxHeight={90}
+            className="h-40 max-w-full"
+          />
+        </CardContent>
+        <CardFooter className="gap-2">
+          <Button
+            size="sm"
+            variant={state === "connecting" ? "default" : "outline"}
+            onClick={() => setState("connecting")}
+          >
+            Connecting
+          </Button>
+          <Button
+            size="sm"
+            variant={state === "listening" ? "default" : "outline"}
+            onClick={() => setState("listening")}
+          >
+            Listening
+          </Button>
+          <Button
+            size="sm"
+            variant={state === "speaking" ? "default" : "outline"}
+            onClick={() => setState("speaking")}
+          >
+            Speaking
+          </Button>
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards/bar-visualizer.tsx" />
+    </div>
   )
 }

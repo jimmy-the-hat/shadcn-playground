@@ -10,23 +10,28 @@ import {
   EmptyTitle,
 } from "@workspace/ui/components/empty"
 
+import { SourceLink } from "@/components/source-link"
+
 export function AnomalyAlert() {
   return (
-    <Card>
-      <CardContent>
-        <Empty className="h-48">
-          <EmptyHeader>
-            <EmptyTitle>Get alerted for anomalies</EmptyTitle>
-            <EmptyDescription>
-              Automatically monitor your projects for anomalies and get
-              notified.
-            </EmptyDescription>
-          </EmptyHeader>
-          <EmptyContent>
-            <Button>Upgrade to Observability Plus</Button>
-          </EmptyContent>
-        </Empty>
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardContent>
+          <Empty className="h-48">
+            <EmptyHeader>
+              <EmptyTitle>Get alerted for anomalies</EmptyTitle>
+              <EmptyDescription>
+                Automatically monitor your projects for anomalies and get
+                notified.
+              </EmptyDescription>
+            </EmptyHeader>
+            <EmptyContent>
+              <Button>Upgrade to Observability Plus</Button>
+            </EmptyContent>
+          </Empty>
+        </CardContent>
+      </Card>
+      <SourceLink path="apps/web/components/cards/anomaly-alert.tsx" />
+    </div>
   )
 }

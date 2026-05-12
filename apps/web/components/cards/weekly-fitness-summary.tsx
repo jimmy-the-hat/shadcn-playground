@@ -12,6 +12,8 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card"
 
+import { SourceLink } from "@/components/source-link"
+
 const FITNESS_WEEKLY_LOAD = [
   { day: "M", load: 84 },
   { day: "T", load: 52 },
@@ -24,36 +26,39 @@ const FITNESS_WEEKLY_LOAD = [
 
 export function WeeklyFitnessSummary() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Weekly Fitness Summary</CardTitle>
-        <CardDescription>Calories and workout load by day</CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        <div className="grid grid-cols-7 gap-1.5">
-          {FITNESS_WEEKLY_LOAD.map((day, index) => (
-            <div
-              key={`${day.day}-${index}`}
-              className="rounded-md p-1.5 text-center ring ring-border"
-            >
-              <div className="text-sm text-muted-foreground">{day.day}</div>
-              <div className="relative mt-1 h-16 overflow-hidden rounded-sm bg-muted">
-                <div
-                  className="absolute inset-x-0 bottom-0 rounded-sm bg-chart-3"
-                  style={
-                    {
-                      height: `${day.load}%`,
-                    } as React.CSSProperties
-                  }
-                />
+    <div className="flex flex-col gap-2">
+      <Card>
+        <CardHeader>
+          <CardTitle>Weekly Fitness Summary</CardTitle>
+          <CardDescription>Calories and workout load by day</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <div className="grid grid-cols-7 gap-1.5">
+            {FITNESS_WEEKLY_LOAD.map((day, index) => (
+              <div
+                key={`${day.day}-${index}`}
+                className="rounded-md p-1.5 text-center ring ring-border"
+              >
+                <div className="text-sm text-muted-foreground">{day.day}</div>
+                <div className="relative mt-1 h-16 overflow-hidden rounded-sm bg-muted">
+                  <div
+                    className="absolute inset-x-0 bottom-0 rounded-sm bg-chart-3"
+                    style={
+                      {
+                        height: `${day.load}%`,
+                      } as React.CSSProperties
+                    }
+                  />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button className="w-full">View details</Button>
-      </CardFooter>
-    </Card>
+            ))}
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button className="w-full">View details</Button>
+        </CardFooter>
+      </Card>
+      <SourceLink path="apps/web/components/cards/weekly-fitness-summary.tsx" />
+    </div>
   )
 }
