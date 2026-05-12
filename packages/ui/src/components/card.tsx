@@ -189,7 +189,7 @@ function Card({
          * compatibility with the `size="sm"` API.
          */
         !flush &&
-          "py-(--card-padding) gap-(--card-padding) data-[size=sm]:gap-4 data-[size=sm]:py-4",
+          "gap-(--card-padding) py-(--card-padding) data-[size=sm]:gap-4 data-[size=sm]:py-4",
         className
       )}
       {...props}

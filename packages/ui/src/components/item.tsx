@@ -59,7 +59,10 @@ function ItemSeparator({
       data-slot="item-separator"
       orientation="horizontal"
       style={
-        { "--item-separator-margin": itemSeparatorMarginMap[margin], ...style } as React.CSSProperties
+        {
+          "--item-separator-margin": itemSeparatorMarginMap[margin],
+          ...style,
+        } as React.CSSProperties
       }
       className={cn("my-(--item-separator-margin)", className)}
       {...props}
@@ -159,7 +162,7 @@ function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-title"
       className={cn(
-        "font-heading line-clamp-1 flex w-fit items-center gap-2 text-sm leading-snug font-medium underline-offset-4",
+        "line-clamp-1 flex w-fit items-center gap-2 font-heading text-sm leading-snug font-medium underline-offset-4",
         className
       )}
       {...props}
