@@ -682,6 +682,22 @@ export default function Page() {
                     <div>
                       <Counter label="Bounded" defaultValue={5} min={0} max={10} />
                     </div>
+                    <div className="space-y-6 border-t pt-6">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                        Responsive — scales with container
+                      </p>
+                      <div className="grid gap-6 md:grid-cols-3">
+                        <div className="w-full rounded-lg border border-dashed p-4">
+                          <Counter label="Small" responsive />
+                        </div>
+                        <div className="w-full rounded-lg border border-dashed p-4 md:col-span-2">
+                          <Counter label="Medium" responsive defaultValue={5} min={0} max={10} />
+                        </div>
+                        <div className="w-full rounded-lg border border-dashed p-4 md:col-span-3">
+                          <Counter label="Large" responsive />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
