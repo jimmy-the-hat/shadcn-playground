@@ -46,14 +46,14 @@ function Counter({
 
   if (responsive) {
     const bigBtn = {
-      width: "clamp(2rem, 13cqi, 3.75rem)",
-      height: "clamp(2rem, 13cqi, 3.75rem)",
-      fontSize: "clamp(0.55rem, 2.6cqi, 0.9rem)",
+      width: "clamp(2rem, 14cqi, 5rem)",
+      height: "clamp(2rem, 14cqi, 5rem)",
+      fontSize: "clamp(0.55rem, 3cqi, 1.1rem)",
     } as React.CSSProperties
     const smallBtn = {
-      width: "clamp(1.75rem, 11cqi, 3rem)",
-      height: "clamp(1.75rem, 11cqi, 3rem)",
-      fontSize: "clamp(0.5rem, 2.2cqi, 0.8rem)",
+      width: "clamp(1.75rem, 12cqi, 4rem)",
+      height: "clamp(1.75rem, 12cqi, 4rem)",
+      fontSize: "clamp(0.5rem, 2.5cqi, 0.95rem)",
     } as React.CSSProperties
     const valueStyle = {
       fontSize: "clamp(1.25rem, 13cqi, 4rem)",
@@ -70,7 +70,7 @@ function Counter({
             {label}
           </span>
         )}
-        <div className="flex w-full items-center justify-between gap-[clamp(0.25rem,1.5cqi,0.75rem)]">
+        <div className="flex w-full items-center justify-between gap-[clamp(0.25rem,3cqi,1.75rem)]">
           <Button
             variant="outline"
             onClick={() => adjust(-1)}
